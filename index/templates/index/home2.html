@@ -1,0 +1,73 @@
+{% extends 'index/base.html' %}
+{% load static %}
+
+{% block extra_navbar_css %}navbar-fixed-top navbar-home{% endblock %}
+
+{% block heading %}{% endblock %}
+
+{% block page %}
+  <div class="banner">
+    <div class="container">
+      <div class="callout">
+        <div class="intro-text">Those</div>
+        <div class="intro-text">Dang</div>
+        <div class="intro-text">Gurls</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 feature">
+        <span class="fa-stack fa-5x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-paw fa-inverse fa-stack-1x"></i>
+        </span>
+
+          <h3>Blog Stuff</h3>
+
+          <p>Lipsum</p>
+
+        </div>
+
+        <div class="col-md-6 feature">
+        <span class="fa-stack fa-5x">
+          <i class="fa fa-circle fa-stack-2x c-green"></i>
+          <i class="fa fa-life-ring fa-inverse fa-stack-1x"></i>
+        </span>
+
+          <h3>Recipe Stuff</h3>
+
+          <p>Recipes</p>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 feature">
+        <span class="fa-stack fa-5x">
+          <i class="fa fa-circle fa-stack-2x c-red"></i>
+          <i class="fa fa-heart fa-inverse fa-stack-1x"></i>
+        </span>
+
+          <h3>User Login Potentially</h3>
+
+          <p>Add stuff here </p>
+        </div>
+
+        <div class="col-md-6 feature">
+        <span class="fa-stack fa-5x">
+          <i class="fa fa-circle fa-stack-2x c-blue"></i>
+          <i class="fa fa-facebook fa-inverse fa-stack-1x"></i>
+        </span>
+
+          <h3>Facebook</h3>
+
+          <p>Can we auth <a href="https://www.facebook.com/kdmeubicho/">página</a> Through Facebook.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
