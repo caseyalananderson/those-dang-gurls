@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- Following Menu -->
+{% include "following_menu.html" %}
+<!-- Sidebar Menu -->
+{% include "sidebar_menu.html" %}
+
+
+<!-- Page Contents -->
+<div class="pusher">
+
+  <!-- Header -->
+  <div class="ui inverted vertical masthead center aligned segment">
+     {% include "header.html" %}
+  </div>
+
+      <div class="content container">
+          <div class="row">
+              <div class="col-md-8">
+              {% for post in blog_posts %}
+                  <div class="post">
+                      <div class="date">
+                          {{ post.published_date }}
+                      </div>
+                      <h1><a href="">{{ post.title }}</a></h1>
+                      <p>{{ post.text|linebreaksbr }}</p>
+                  </div>
+              {% endfor %}
+              </div>
+          </div>
+      </div>
+
+  {% include "footer.html" %}
+
+</div>
+
+{% endblock %}
