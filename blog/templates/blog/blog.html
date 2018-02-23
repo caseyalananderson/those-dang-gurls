@@ -14,15 +14,17 @@
 <div class="pusher">
 
   <!-- Header -->
-  <div class="ui inverted vertical masthead center aligned segment">
+  <div class="ui inverted vertical center aligned segment">
      {% include "header.html" %}
   </div>
 
+
       <div class="content container">
+
           <div class="row">
               <div class="col-md-8">
               {% for post in blog_posts %}
-                  <div class="post">
+                 <div class="ui vertical center aligned segment">
                       <div class="date">
                           {{ post.published_date }}
                       </div>
@@ -33,6 +35,7 @@
               </div>
           </div>
       </div>
+
 
   {% include "footer.html" %}
 

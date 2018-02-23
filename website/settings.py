@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'recipes',
     'index',
     'blog',
-    # 'semantic',
 )
 
 MIDDLEWARE_CLASSES = (
