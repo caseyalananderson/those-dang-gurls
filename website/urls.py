@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^$', include('index.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^recipes/', include('recipes.urls')),
-    # url(r'^videos/', include('videos.urls')),
+    url(r'^videos/', include('videos.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
