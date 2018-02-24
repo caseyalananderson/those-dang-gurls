@@ -18,6 +18,23 @@
      {% include "header.html" %}
   </div>
 
+    {% for recipe in recipes %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="eight wide column">
+                <h1><a href="" class="ui header">{{ recipe.title }}</a></h1>
+                <p>{{ recipe.description|linebreaksbr }}</p>
+                </div>
+                <div class="six wide right floated column">
+            <img src="{{ recipe.photo.url }}"  class="ui large bordered rounded image">
+            </div>
+      </div>
+    </div>
+        {% endfor %}
+
+    <!--
+
 
       <div class="content container">
 
@@ -32,9 +49,10 @@
 
                       <h1><a href="">{{ recipe.title }}</a></h1>
                       <h2><a href="">{{ recipe.health }}</a></h2>
-                      {% if recipe.vegan %{
+                      {% if recipe.vegan %}
                         <h1> Vegan </h1>
                       {% endif %}
+                     <img >
                       <p>{{ recipe.description|linebreaksbr }}</p>
                   </div>
               {% endfor %}
@@ -42,9 +60,13 @@
           </div>
       </div>
 
+      -->
+
 
   {% include "footer.html" %}
 
 </div>
 
 {% endblock %}
+
+
