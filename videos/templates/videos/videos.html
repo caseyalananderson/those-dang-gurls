@@ -18,16 +18,15 @@
      {% include "header.html" %}
   </div>
 
-    {% for recipe in recipes %}
+    {% for video in videos %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
                 <h1><a href="" class="ui header">{{ recipe.title }}</a></h1>
-                {% if recipe.vegan %}
-                        <h2> Vegan </h2>
+                {% if video.related_blog %}
+                        <h2> Heres the related blog  </h2>
                 {% endif %}
-                    <h2> This is rated as: {{ recipe.health }}</h2>
                 <p>{{ recipe.description|linebreaksbr }}</p>
                 </div>
                 <div class="six wide right floated column">
