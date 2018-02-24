@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'recipes',
     'index',
     'blog',
+    'videos',
 )
 
 MIDDLEWARE_CLASSES = (
