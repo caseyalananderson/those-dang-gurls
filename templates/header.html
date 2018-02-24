@@ -1,0 +1,37 @@
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item" href="/" id="homebtn">Home</a>
+        <a class="item" href="/blog" id="blogbtn"> Blog</a>
+        <a class="item" href="/recipes" id="recipebtn">Recipes</a>
+        <a class="item" href="/videos" id="videobtn">Videos</a>
+        <a class="item">About Us</a>
+
+        <div class="right item">
+          <a class="ui inverted button">Log in</a>
+          <a class="ui inverted button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui search">
+      <input style="color: #000000;" class="prompt" type="text" placeholder="Search the site">
+      <div class="results"></div>
+    </div>
+
+    <script>
+    $('.ui.pointing.menu')
+        .on('click', '.item', function() {
+          if(!$(this).hasClass('dropdown')) {
+            $(this)
+              .addClass('active')
+              .siblings('.item')
+                .removeClass('active');
+          }
+        });
+
+     </script>
+
