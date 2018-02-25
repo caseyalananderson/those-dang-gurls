@@ -21,8 +21,8 @@ class Video(models.Model):
     youtube_link = models.URLField(null=False)
     youtube_embed_link = models.URLField(max_length=100, blank=True)
     description = models.TextField(null=True)
-    related_blog = models.ForeignKey(BlogPost, null=True)
-    related_recipe = models.ForeignKey(Recipe, null=True)
+    related_blog = models.ForeignKey(BlogPost, blank=True)
+    related_recipe = models.ForeignKey(Recipe, blank=True)
 
     def __str__(self):
         return self.title
