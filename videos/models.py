@@ -41,12 +41,10 @@ def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
 
 
 def create_youtube_embed_link(youtube_link):
-    match = re.search(r'^(http|https)\:\/\/www\.youtube\.com\/watch\?v\=(\w*)(\&(.*))?$',
-                      youtube_link)
-    if match:
-        youtube_embed_link = 'http://www.youtube.com/embed/%s' % (match.group(2))
-        print(youtube_embed_link)
-        return 'http://www.youtube.com/embed/%s' % (match.group(2))
-    print('hello')
-    return ''
+    try:
+        embed_str = youtube_link.split('watch?v=')[1]
+        youtube_embed_link = 'http://www.youtube.com/embed/%s' % embed_str
+        return youtube_embed_link
+    except:
+        return ''
 
