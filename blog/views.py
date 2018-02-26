@@ -12,13 +12,12 @@ def index(request):
     """
 
     blog_posts = BlogPost.objects.all()
-    print(blog_posts)
 
     context = {
         'blog_posts': blog_posts,
     }
 
-    return render(request, 'blog/blog.html', context)
+    return render(request, 'blog/blog_list.html', context)
 
 
 # Create your views here.
@@ -31,7 +30,6 @@ def blog_post(request, pk):
     """
 
     post = BlogPost.objects.filter(pk=pk)[0]
-    print(post)
 
     context = {
         'post': post,
