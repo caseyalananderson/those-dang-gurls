@@ -9,6 +9,7 @@ class BlogPost(models.Model):
     """
     title = models.CharField(max_length=30)
     published_date = models.DateField(auto_now_add=True)
+    summary = models.TextField(null=True)
     text = models.TextField(null=True)
 
     def __str__(self):

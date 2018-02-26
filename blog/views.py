@@ -19,3 +19,22 @@ def index(request):
     }
 
     return render(request, 'blog/blog.html', context)
+
+
+# Create your views here.
+def blog_post(request, pk):
+    """
+    Main index that displays blog post
+    :param request:
+    :param pk
+    :return:
+    """
+
+    post = BlogPost.objects.filter(pk=pk)[0]
+    print(post)
+
+    context = {
+        'post': post,
+    }
+
+    return render(request, 'blog/blog_post.html', context)
