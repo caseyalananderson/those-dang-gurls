@@ -17,4 +17,22 @@ def index(request):
         'recipes': recipes,
     }
 
-    return render(request, 'recipes/recipes.html', context)
+    return render(request, 'recipes/recipe_list.html', context)
+
+
+# Create your views here.
+def recipe_detail(request, pk):
+    """
+    Main index that displays blog post
+    :param request:
+    :param pk
+    :return:
+    """
+
+    recipe = Recipe.objects.filter(pk=pk)[0]
+
+    context = {
+        'recipe': recipe,
+    }
+
+    return render(request, 'recipes/recipe_detail.html', context)
