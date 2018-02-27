@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% load inline_images %}
+
 {% block content %}
 
 <!-- Following Menu -->
@@ -18,53 +20,27 @@
      {% include "header.html" %}
   </div>
 
-    {% for recipe in recipes %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                <h1><a href="" class="ui header">{{ recipe.title }}</a></h1>
+                <h1><a>{{ recipe.title }}</a></h1>
                 {% if recipe.vegan %}
                         <h2> Vegan </h2>
                 {% endif %}
                     <h2> This is rated as: {{ recipe.health }}</h2>
-                <p>{{ recipe.description|linebreaksbr }}</p>
+
+                {{ recipe.instructions|safe }}
+
                 </div>
                 <div class="six wide right floated column">
-            <img src="{{ recipe.photo.url }}"  class="ui large bordered rounded image">
+            <img src="{{ recipe.main_photo.url }}"  class="ui large bordered rounded image">
             </div>
+
       </div>
+
+
     </div>
-        {% endfor %}
-
-    <!--
-
-
-      <div class="content container">
-
-          <div class="row">
-              <div class="col-md-8">
-              {% for recipe in recipes %}
-
-                 <div class="ui vertical center aligned segment">
-                      <div class="date">
-                          {{ post.published_date }}
-                      </div>
-
-                      <h1><a href="">{{ recipe.title }}</a></h1>
-                      <h2><a href="">{{ recipe.health }}</a></h2>
-                      {% if recipe.vegan %}
-                        <h1> Vegan </h1>
-                      {% endif %}
-                     <img >
-                      <p>{{ recipe.description|linebreaksbr }}</p>
-                  </div>
-              {% endfor %}
-              </div>
-          </div>
-      </div>
-
-      -->
 
 
   {% include "footer.html" %}
