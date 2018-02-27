@@ -22,7 +22,7 @@
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                <h1><a>{{ recipe.title }}</a></h1>
+                    <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
                     <div class="extra">
                         {% if recipe.vegan %}
                         <span data-tooltip="Vegan">
@@ -46,7 +46,6 @@
                         {% endif %}
                     </div>
 
-
                 </div>
                 <div class="six wide right floated column">
                     {% for image in recipe.image_set.all %}
@@ -59,12 +58,10 @@
             </div>
             <div class="row">
                 <div class="fourteen wide column">
-                                    {{ recipe.instructions|safe|linebreaksbr }}
+                    {{ recipe.instructions|safe|linebreaksbr }}
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 
