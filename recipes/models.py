@@ -19,19 +19,25 @@ class Recipe(models.Model):
     Class that holds all the recipe names
     """
 
-    HEALTH_LEVEL = (
-        ('HEALTHY', 'Healthy'),
-        ('CLOSE', 'You can spin it that way'),
-        ('MAYBE', 'Its complicated'),
-        ('NOT REALLY', 'Its really delicious!'),
-    )
+    # HEALTH_LEVEL = (
+    #
+    #    ('Healthy', 'Healthy'),
+    #    ('Close to healthy', 'Close to healthy'),
+    #    ('Healthier than most deserts', 'Healthier than most deserts'),
+    #    ('Its really delicious!', 'Its really delicious!'),
+    # )
+
+    # health = models.CharField(choices=HEALTH_LEVEL, max_length=25)
 
     title = models.CharField(max_length=50)
     description = models.TextField(null=True)
     instructions = models.TextField(null=True)
+    # main_photo = models.OneToOneField(Image)
 
     vegan = models.BooleanField(default=False)
-    health = models.CharField(choices=HEALTH_LEVEL, max_length=25)
+    healthy = models.BooleanField(default=False)
+    vegetarian = models.BooleanField(default=False)
+    gluten_free = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -46,8 +52,8 @@ class Image(models.Model):
     """
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to=get_upload_path)
-    main_photo = models.BooleanField(default=False)
-    recipe = models.ForeignKey(Recipe, null=True, blank=True)
+    cover_photo = models.BooleanField(default=False)
+    recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.name

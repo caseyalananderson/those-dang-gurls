@@ -2,8 +2,6 @@
 
 {% load staticfiles %}
 
-{% load inline_images %}
-
 {% block content %}
 
 <!-- Following Menu -->
@@ -25,28 +23,52 @@
             <div class="row">
                 <div class="eight wide column">
                 <h1><a>{{ recipe.title }}</a></h1>
-                {% if recipe.vegan %}
-                        <h2> Vegan </h2>
-                {% endif %}
-                    <h2> This is rated as: {{ recipe.health }}</h2>
+                    <div class="extra">
+                        {% if recipe.vegan %}
+                        <span data-tooltip="Vegan">
+                            <img src="{% static 'icons/vegan.jpg' %}">
+                        </span>
+                        {% endif %}
+                        {% if recipe.healthy %}
+                        <span data-tooltip="Healthy">
+                            <img src="{% static 'icons/healthy.jpg' %}">
+                        </span>
+                        {% endif %}
+                        {% if recipe.healthy %}
+                         <span data-tooltip="Vegetarian">
+                            <img src="{% static 'icons/vegetarian.jpg' %}">
+                        </span>
+                        {% endif %}
+                        {% if recipe.gluten_free %}
+                        <span data-tooltip="Gluten Free">
+                            <img src="{% static 'icons/gluten_free.jpg' %}">
+                        </span>
+                        {% endif %}
+                    </div>
 
-                {{ recipe.instructions|safe }}
 
                 </div>
                 <div class="six wide right floated column">
-            <img src="{{ recipe.main_photo.url }}"  class="ui large bordered rounded image">
+                    {% for image in recipe.image_set.all %}
+                        {% if image.cover_photo %}
+                            <img src="{{ image.image.url }}"  class="ui center large bordered rounded image">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="fourteen wide column">
+                                    {{ recipe.instructions|safe|linebreaksbr }}
+                </div>
             </div>
 
-      </div>
-
+        </div>
 
     </div>
-
+</div>
 
   {% include "footer.html" %}
 
-</div>
 
 {% endblock %}
-
-

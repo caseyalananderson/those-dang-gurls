@@ -24,31 +24,44 @@
             <div class="row">
                 <div class="eight wide column">
                     <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
-                    {% if recipe.vegan %}
                     <div class="extra">
+                        {% if recipe.vegan %}
                         <span data-tooltip="Vegan">
-                        <!--<i class="lightning circular blue icon fitted"></i> -->
                             <img src="{% static 'icons/vegan.jpg' %}">
                         </span>
+                        {% endif %}
+                        {% if recipe.healthy %}
+                        <span data-tooltip="Healthy">
+                            <img src="{% static 'icons/healthy.jpg' %}">
+                        </span>
+                        {% endif %}
+                        {% if recipe.healthy %}
+                         <span data-tooltip="Vegetarian">
+                            <img src="{% static 'icons/vegetarian.jpg' %}">
+                        </span>
+                        {% endif %}
+                        {% if recipe.gluten_free %}
+                        <span data-tooltip="Gluten Free">
+                            <img src="{% static 'icons/gluten_free.jpg' %}">
+                        </span>
+                        {% endif %}
                     </div>
-
-                {% endif %}
-                    <h2> This is rated as: {{ recipe.health }}</h2>
-                <p>{{ recipe.description|linebreaksbr }}</p>
+                    <p>{{ recipe.description|linebreaksbr }}</p>
                 </div>
                 <div class="six wide right floated column">
-                    <img src="{{ recipe.main_photo.url }}"  class="ui large bordered rounded image">
+                    {% for image in recipe.image_set.all %}
+                        {% if image.cover_photo %}
+                            <img src="{{ image.image.url }}"  class="ui center large bordered rounded image">
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-      </div>
     </div>
     {% endfor %}
-
-  {% include "footer.html" %}
-
 </div>
 
+
+{% include "footer.html" %}
+
 {% endblock %}
-
-
