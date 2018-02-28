@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+<!-- Following Menu -->
+{% include "following_menu.html" %}
+<!-- Sidebar Menu -->
+{% include "sidebar_menu.html" %}
+
+
+<!-- Page Contents -->
+<div class="pusher">
+
+  <!-- Header -->
+  <div class="ui inverted vertical center aligned segment">
+     {% include "header.html" %}
+  </div>
+
+    {% for recipe in qs %}
+    <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
+    {% endfor %}
+
+</div>
+
+
+{% include "footer.html" %}
+
+{% endblock %}
