@@ -12,13 +12,13 @@ class ImageInline(admin.TabularInline):
 class RecipeAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '20'})},
-        models.TextField: {'widget': Textarea(attrs={'rows': 40, 'cols': 80})},
+        models.TextField: {'widget': Textarea(attrs={'rows': 80, 'cols': 80})},
     }
+
     inlines = [
         ImageInline,
     ]
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(Image)
 

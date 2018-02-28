@@ -12,7 +12,7 @@ def get_upload_path(instance, filename):
     :return:
     """
     no_space_title = str(instance.recipe.title.replace(' ', ''))
-    return os.path.join("photos", no_space_title, 'images', filename)
+    return os.path.join("uploads", no_space_title, filename)
 
 
 class Recipe(models.Model):
@@ -20,21 +20,9 @@ class Recipe(models.Model):
     Class that holds all the recipe names
     """
 
-    # HEALTH_LEVEL = (
-    #
-    #    ('Healthy', 'Healthy'),
-    #    ('Close to healthy', 'Close to healthy'),
-    #    ('Healthier than most deserts', 'Healthier than most deserts'),
-    #    ('Its really delicious!', 'Its really delicious!'),
-    # )
-
-    # health = models.CharField(choices=HEALTH_LEVEL, max_length=25)
-
     title = models.CharField(max_length=50)
-    description = models.TextField(null=True)
-    instructions = models.TextField(null=True)
+    description = RichTextUploadingField(null=True)
     content = RichTextUploadingField(null=True)
-    # main_photo = models.OneToOneField(Image)
 
     vegan = models.BooleanField(default=False)
     healthy = models.BooleanField(default=False)
