@@ -41,6 +41,9 @@ INSTALLED_APPS = (
     'index',
     'blog',
     'videos',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'cadmin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,3 +115,20 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+####################################
+## CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+###################################

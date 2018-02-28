@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls')),
     url(r'^recipes/', include('recipes.urls')),
     url(r'^videos/', include('videos.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

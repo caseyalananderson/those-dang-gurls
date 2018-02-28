@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from django.conf import settings
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def get_upload_path(instance, filename):
@@ -32,6 +33,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True)
     instructions = models.TextField(null=True)
+    content = RichTextUploadingField(null=True)
     # main_photo = models.OneToOneField(Image)
 
     vegan = models.BooleanField(default=False)

@@ -24,17 +24,16 @@
                 <div class="eight wide column">
                     <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
                     <div class="extra">
+
                         {% if recipe.vegan %}
-                        <span data-tooltip="Vegan">
-                            <img src="{% static 'icons/vegan.jpg' %}">
-                        </span>
+                        <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
                         {% endif %}
                         {% if recipe.healthy %}
                         <span data-tooltip="Healthy">
                             <img src="{% static 'icons/healthy.jpg' %}">
                         </span>
                         {% endif %}
-                        {% if recipe.healthy %}
+                        {% if recipe.vegetarian %}
                          <span data-tooltip="Vegetarian">
                             <img src="{% static 'icons/vegetarian.jpg' %}">
                         </span>
@@ -58,7 +57,7 @@
             </div>
             <div class="row">
                 <div class="fourteen wide column">
-                    {{ recipe.instructions|safe|linebreaksbr }}
+                    {{ recipe.content|safe }}
                 </div>
             </div>
         </div>
