@@ -37,5 +37,5 @@ def search(request):
 
     print(context)
 
-    return HttpResponse(this_str)
-    # return render(request, 'search/search_list.html', context)
+    # return HttpResponse(this_str)
+    return render(request, 'search/search_list.html', context)

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'index',
     'blog',
     'videos',
+    'search',
     'ckeditor',
     'ckeditor_uploader',
     # 'cadmin',
@@ -93,12 +94,12 @@ DATABASES = {
     }
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
 
 
 # Internationalization
