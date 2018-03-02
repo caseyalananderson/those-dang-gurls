@@ -7,8 +7,8 @@ from django.dispatch import receiver
 
 
 # Create your models here.
-from recipes.models import Recipe
-from blog.models import BlogPost
+# from recipes.models import Recipe
+from food.models import FoodEntry
 
 
 class Video(models.Model):
@@ -21,8 +21,7 @@ class Video(models.Model):
     youtube_link = models.URLField(null=False)
     youtube_embed_link = models.URLField(max_length=100, blank=True)
     description = models.TextField(null=True)
-    related_blog = models.ForeignKey(BlogPost, blank=True, null=True)
-    related_recipe = models.ForeignKey(Recipe, blank=True, null=True)
+    related_foodentry = models.ForeignKey(FoodEntry, blank=True, null=True)
 
     def __str__(self):
         return self.title

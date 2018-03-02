@@ -37,9 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipes',
+    # 'recipes',
     'index',
-    'blog',
+    # 'blog',
+    'food',
     'videos',
     'search',
     'ckeditor',
@@ -86,8 +87,8 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'thosedanggurls',
-        'USER': 'adanggurl',
+        'NAME': 'thosedanggirls_db',
+        'USER': 'adanggirl',
         'PASSWORD': 'password123454321',
         'HOST': 'localhost',
         'PORT': '',

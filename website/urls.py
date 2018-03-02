@@ -23,8 +23,9 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('index.urls')),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^recipes/', include('recipes.urls')),
+    # url(r'^blog/', include('blog.urls')),
+    # url(r'^recipes/', include('recipes.urls')),
+    url(r'^food/', include('recipes.urls')),
     url(r'^videos/', include('videos.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^search/', include('search.urls')),
