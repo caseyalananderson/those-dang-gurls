@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .models import FoodEntry
-
+from django.http import HttpResponse
 
 # Create your views here.
 def food_list(request):
@@ -12,8 +12,11 @@ def food_list(request):
     """
 
     filter = request.GET.get('filter')
+
     if filter:
         food_posts = FoodEntry.objects.filter(filter)
+    else:
+        food_posts = FoodEntry.objects.all()
 
     print(food_posts)
 
@@ -25,7 +28,7 @@ def food_list(request):
 
 
 # Create your views here.
-def blog_post(request, pk):
+def food_post(request, pk):
     """
     Main index that displays blog post
     :param request:
@@ -33,10 +36,10 @@ def blog_post(request, pk):
     :return:
     """
 
-    post = BlogPost.objects.filter(pk=pk)[0]
+    post = FoodEntry.objects.filter(pk=pk)[0]
 
     context = {
         'post': post,
     }
 
-    return render(request, 'blog/blog_post.html', context)
+    return render(request, 'food/food_post.html', context)
