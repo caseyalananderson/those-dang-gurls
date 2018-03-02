@@ -24,6 +24,7 @@
                 <div class="eight wide column">
                     <h1><a href="{% url 'food_post' pk=post.pk %}">{{ post.title }}</a></h1>
                     <div class="extra">
+                        {{ post.summary|safe }}
 
                         {% if post.vegan %}
                         <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
@@ -47,17 +48,13 @@
 
                 </div>
                 <div class="six wide right floated column">
-                    {% for image in recipe.image_set.all %}
-                        {% if image.cover_photo %}
-                            <img src="{{ image.image.url }}"  class="ui center large bordered rounded image">
-                        {% endif %}
-                    {% endfor %}
+                            <img src="{{ post.recipe.cover_photo.url }}"  class="ui center large bordered rounded image">
                 </div>
 
             </div>
             <div class="row">
                 <div class="fourteen wide column">
-                    {{ recipe.content|safe }}
+                    {{ post.content|safe }}
                 </div>
             </div>
         </div>
