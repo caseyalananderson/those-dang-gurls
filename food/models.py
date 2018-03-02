@@ -15,6 +15,24 @@ def get_upload_path(instance, filename):
     return os.path.join("uploads", no_space_title, filename)
 
 
+class Recipe(models.Model):
+    """
+    Recipe summary for the
+    """
+
+    TIMES_UNITS = (
+        ('minutes', 'minutes'),
+        ('hours', 'hours'),
+    )
+
+    name = models.CharField(max_length=50)
+    servings = models.CharField(max_length=5)
+    time_unit = models.CharField(choices=TIMES_UNITS, default='minutes', max_length=10)
+    prep_time = models.CharField(max_length=3)
+    cook_time = models.CharField(max_length=3)
+    total_time = models.CharField(max_length=3)
+
+
 class FoodEntry(models.Model):
     """
     Class that holds all the recipe names
@@ -58,20 +76,5 @@ class Image(models.Model):
         return self.name
 
 
-class Recipe(models.Model):
-    """
-    Recipe summary for the
-    """
-
-    TIMES_UNITS = {
-        'minutes': 'minutes',
-        'hours': 'hours',
-    }
-    name = models.CharField(max_length=50)
-    servings = models.CharField(max_length=5)
-    time_unit = models.ChoiceField(choices=TIMES_UNITS, default='minutes')
-    prep_time = models.CharField(max_length=3)
-    cook_time = models.CharField(max_length=3)
-    total_time = models.CharField(max_length=3)
 
 
