@@ -4,16 +4,29 @@
       <div class="menu">
           <div class="ui simple dropdown item">
               <i class="icon food blue"></i>
-              Food
-              <div class="menu">
-                  <a class="item" href="/blog"><i class="edit icon"></i>Blog</a>
-                  <a class="item" href="/recipes"><i class="food icon"></i>Recipes</a>
-                  <a class="item" href="/recipes"><i class="video icon"></i>Videos</a>
-            </div>
+              <a href="/food"> Food </a>
+              <i class="icon dropdown"></i>
+              <div class="dropdown vertical menu">
+                  <a class="item" href="/blog?filter=breakfast"><i class="edit icon"></i>Breakfast</a>
+                  <a class="item" href="/food?filter=entree"><i class="edit icon"></i>Entree</a>
+                  <a class="item" href="/food?filter=snack"><i class="edit icon"></i>Snack</a>
+                  <a class="item" href="/food?filter=dessert"><i class="edit icon"></i>Desert</a>
+                  <a class="item" href="/food?filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
+                  <a class="item" href="/food?filter=beverages"><i class="edit icon"></i>Beverages</a>
+                  <div class="ui simple dropdown item">
+                      More
+                      <i class="icon dropdown"></i>
+                      <div class="dropdown vertical menu">
+                          <a class="item" href="/food?filter=vegan"><i class="edit icon"></i>Vegan</a>
+                          <a class="item" href="/food?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
+                      </div>
+                  </div>
+              </div>
           </div>
           <div class="ui simple dropdown item">
               <i class="icon lightning black"></i>
-              Fitness
+              <a href="/fitness"> Fitness </a>
+              <i class="icon dropdown"></i>
               <div class="menu">
                   <a class="item"><i class="edit icon"></i>Blog</a>
                   <a class="item"><i class="video icon"></i>Videos</a>
@@ -23,6 +36,7 @@
           <div class="ui simple dropdown item">
               <i class="icon female pink"></i>
                 Beauty
+              <i class="icon dropdown"></i>
               <div class="menu">
                   <a class="item"><i class="edit icon"></i>Blog</a>
                   <a class="item"><i class="video icon"></i>Videos</a>
@@ -53,7 +67,7 @@
       </div>
       <div class="sub item">
         <div class="ui icon input">
-          <form type="get" action="/search/" style="margin: 0">
+          <form action="/search/" style="margin: 0">
                 <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
                 <button id="search_submit" type="submit" >Submit</button>
             </form>
