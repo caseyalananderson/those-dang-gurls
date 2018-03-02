@@ -19,7 +19,7 @@
   </div>
 
     {% for recipe in qs %}
-    <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
+    <h1><a href="{% url 'food_post' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
     {% endfor %}
 
 </div>

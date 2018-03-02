@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .models import FoodEntry
-from django.http import HttpResponse
+
 
 # Create your views here.
 def food_list(request):
@@ -11,12 +11,19 @@ def food_list(request):
     :return:
     """
 
-    filter = request.GET.get('filter')
+    filter_val = str(request.GET.get('filter'))
+    print(filter_val)
 
-    if filter:
-        food_posts = FoodEntry.objects.filter(filter)
+    if filter_val == 'breakfast':
+        food_posts = FoodEntry.objects.filter(breakfast=True)
+    elif filter_val == 'vegan':
+        food_posts = FoodEntry.objects.filter(vegan=True)
+    elif filter_val == 'entree':
+        food_posts = FoodEntry.objects.filter(entree=True)
+    elif filter_val == 'snack':
+        food_posts = FoodEntry.objects.filter(snack=True)
     else:
-        food_posts = FoodEntry.objects.all()
+        food_posts = FoodEntry.objects.filter()
 
     print(food_posts)
 

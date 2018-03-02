@@ -17,10 +17,9 @@ def search(request):
     :return:
     """
 
-    qs = Recipe.objects.all()
+    qs = FoodEntry.objects.all()
 
     keywords = request.GET.get('search_box')
-    this_str = "<p> %s </p>" % keywords
     if keywords:
         query = SearchQuery(keywords)
         title_vector = SearchVector('title', weight='A')
