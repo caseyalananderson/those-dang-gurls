@@ -15,14 +15,23 @@ def get_upload_path(instance, filename):
     return os.path.join("uploads", no_space_title, filename)
 
 
-class Recipe(models.Model):
+class FoodEntry(models.Model):
     """
     Class that holds all the recipe names
     """
 
     title = models.CharField(max_length=50)
-    description = RichTextUploadingField(null=True)
+    summary = RichTextUploadingField(null=True)
+    foodprep = RichTextUploadingField(null=True)
     content = RichTextUploadingField(null=True)
+
+    recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+
+    breakfast = models.BooleanField(default=False)
+    entree = models.BooleanField(default=False)
+    snack = models.BooleanField(default=False)
+    desert = models.BooleanField(default=False)
+    savory = models.BooleanField(default=False)
 
     vegan = models.BooleanField(default=False)
     healthy = models.BooleanField(default=False)
@@ -38,12 +47,31 @@ class Recipe(models.Model):
 
 class Image(models.Model):
     """
-    Images for the Recipe
+    Images for the Food Entry
     """
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
     image = models.ImageField(upload_to=get_upload_path)
     cover_photo = models.BooleanField(default=False)
-    recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+    foodentry = models.ForeignKey(FoodEntry, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.name
+
+
+class Recipe(models.Model):
+    """
+    Recipe summary for the
+    """
+
+    TIMES_UNITS = {
+        'minutes': 'minutes',
+        'hours': 'hours',
+    }
+    name = models.CharField(max_length=50)
+    servings = models.CharField(max_length=5)
+    time_unit = models.ChoiceField(choices=TIMES_UNITS, default='minutes')
+    prep_time = models.CharField(max_length=3)
+    cook_time = models.CharField(max_length=3)
+    total_time = models.CharField(max_length=3)
+
+
