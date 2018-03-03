@@ -80,20 +80,24 @@
             </div>
         </div>
 
-            <!-- Comments Section -->
-        <p class="lead">Comments </p>
-        <form method="POST" action="."> {% csrf_token %}
-            {{ comment_form }}
-            <input type="submit" value="Post comment" class="'btn btn-default">
-        </form>
+        <!--Comments Section -->
 
-        <hr/>
+        <div class="ui comments">
+            <h3 class="ui dividing header">Comments</h3>
+            <div class="comment">
+                <p class="lead">Comments </p>
+                <form method="POST" action="."> {% csrf_token %}
+                    {{ comment_form }}
+                    <p> </p>
+                    <input type="submit" value="Post Comment" class="'btn btn-default">
+                </form>
+            </div>
         {% for comment in comments %}
         <p>{{ comment.content }}</p>
         <footer> via {{ comment.user }} | {{ comment.timestamp|timesince }} ago</footer>
 
         {% endfor %}
-        <hr/>
+        </div>>
     </div>
 </div>
 
