@@ -5,8 +5,6 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.admin import GenericForeignKey
 
-# Create your models here.
-
 
 class CommentManager(models.Manager):
     """
@@ -21,7 +19,7 @@ class CommentManager(models.Manager):
 
 class Comment(models.Model):
     """
-    Comments for the Food Entry / Recipe post
+    Comments for the website, managed by CommentManager
     """
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     object_id = models.PositiveIntegerField(null=True)
@@ -29,12 +27,10 @@ class Comment(models.Model):
 
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    approved_comment = models.BooleanField(default=False)
-    parent = models.ForeignKey('self', null=True, blank=True)
 
-    def approve(self):
-        self.approved_comment = True
-        self.save()
+    objects = CommentManager()
+
+    parent = models.ForeignKey('self', null=True, blank=True)
 
     def children(self):
         return Comment.objects.filter(parent=self)
