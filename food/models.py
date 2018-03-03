@@ -113,6 +113,7 @@ class Comment(models.Model):
     text = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     approved_comment = models.BooleanField(default=False)
+    parent = models.ForeignKey('self', null=True, related_name='replies')
 
     def approve(self):
         self.approved_comment = True
