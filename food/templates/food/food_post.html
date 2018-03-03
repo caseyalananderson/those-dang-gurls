@@ -24,7 +24,6 @@
                 <div class="eight wide column">
                     <h1><a href="{% url 'food_post' pk=post.pk %}">{{ post.recipe.title }}</a></h1>
                     <div class="extra">
-                        {{ post.summary|safe }}
 
                         {% if post.vegan %}
                         <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
@@ -45,6 +44,8 @@
                         </span>
                         {% endif %}
                     </div>
+                    
+                    {{ post.summary|safe }}
 
                 </div>
                 <div class="six wide right floated column">
