@@ -31,25 +31,18 @@ class Recipe(models.Model):
     Recipe summary for the
     """
 
-    TIMES_UNITS = (
-        ('minutes', 'minutes'),
-        ('hours', 'hours'),
-    )
-
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     title = models.CharField(max_length=50)
     cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
 
     servings = models.CharField(max_length=5)
-    time_unit = models.CharField(choices=TIMES_UNITS, default='minutes', max_length=10)
-    prep_time = models.CharField(max_length=3)
-    cook_time = models.CharField(max_length=3)
+    prep_time = models.CharField(max_length=20)
+    cook_time = models.CharField(max_length=20)
+    total_time = models.CharField(max_length=20)
 
     directions = RichTextUploadingField(null=True)
     notes = RichTextUploadingField(null=True)
-
-    total_time = models.CharField(max_length=3)
 
     def __str__(self):
         return self.title
@@ -70,7 +63,7 @@ class Ingredient(models.Model):
 
 class FoodEntry(models.Model):
     """
-    Class that holds all the recipe names
+    Class that holds all the entries
     """
 
     # Recipe
