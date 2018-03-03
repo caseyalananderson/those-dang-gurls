@@ -60,13 +60,13 @@
 
             <div class="eight wide column">
                 <h1>Recipe </h1>
-                <p> Servings = {{ post.recipe.servings }} </p>
+                <p> Servings = {{ post.recipe.servings }}</p>
 
-                <p>Prep Time = {{ post.recipe.prep_time }} {{ post.recipe.time_unit }}</p>
+                <p>Prep Time = {{ post.recipe.prep_time }}</p>
 
-                <p> Cook Time = {{ post.recipe.cook_time }} {{ post.recipe.time_unit }}</p>
+                <p> Cook Time = {{ post.recipe.cook_time }}</p>
 
-                 <p>Total Time = {{ post.recipe.total_time }} {{ post.recipe.time_unit }} </p>
+                 <p>Total Time = {{ post.recipe.total_time }}</p>
 
                 <h4> Ingredients </h4>
                 {% for ingredient in post.recipe.ingredient_set.all %}
