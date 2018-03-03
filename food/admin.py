@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FoodEntry, Recipe, Image, Ingredient, FullIngredientList
+from .models import FoodEntry, Recipe, Image, Ingredient
 from django.forms import TextInput, Textarea
 
 from django.db import models
@@ -27,9 +27,4 @@ class FoodEntryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(FullIngredientList)
 admin.site.register(FoodEntry, FoodEntryAdmin)
-
-
-# Register your models here
-# admin.site.register(FoodEntry)

@@ -26,17 +26,6 @@ def get_image_upload_path(instance, filename):
     return os.path.join("uploads", no_space_title, filename)
 
 
-class FullIngredientList(models.Model):
-    """
-    All of the ingredients
-    """
-
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
 class Recipe(models.Model):
     """
     Recipe summary for the
@@ -71,20 +60,12 @@ class Ingredient(models.Model):
     Ingredient
     """
 
-    UNITS = (
-        ('lbs', 'lbs'),
-        ('cups', 'cups'),
-        ('tsp', 'tsp'),
-        ('blank', ''),
-    )
-
-    ingredient_name = models.ForeignKey(FullIngredientList, null=False, blank=False)
-    quantity = models.CharField(max_length=10, blank=False, null=False)
-    unit = models.CharField(choices=UNITS, blank=True, max_length=10)
+    ingredient_name = models.CharField(max_length=40, blank=False, null=False)
+    quantity = models.CharField(max_length=20, blank=False, null=False)
     recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-       return self.ingredient_name.name
+        return self.ingredient_name
 
 
 class FoodEntry(models.Model):
