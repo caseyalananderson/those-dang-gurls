@@ -105,6 +105,8 @@ class FoodEntry(models.Model):
     vegetarian = models.BooleanField(default=False)
     gluten_free = models.BooleanField(default=False)
 
+    published = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title
 

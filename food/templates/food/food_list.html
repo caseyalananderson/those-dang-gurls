@@ -18,6 +18,8 @@
      {% include "header.html" %}
   </div>
 
+    {% if food_posts %}
+
     {% for post in food_posts %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
@@ -52,6 +54,15 @@
         </div>
     </div>
     {% endfor %}
+
+    {% else %}
+    <h2>Nothing matched!</h2>
+    <p> We are a new and upcoming website and are trying to
+        populate the database as fast as we can with entries.
+
+        Please be patient and get back to us soon!
+    </p>
+    {% endif %}
 </div>
 
 

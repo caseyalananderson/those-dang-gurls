@@ -6,24 +6,38 @@ from .models import FoodEntry
 # Create your views here.
 def food_list(request):
     """
-    Main index that displays blog post
+    Main index that displays blog post.
+    Grabs "filter" from cookies in order to filter the query of the database
     :param request:
     :return:
     """
 
-    filter_val = str(request.GET.get('filter'))
-    print(filter_val)
+    # get the name of the string called "filter"
+    food_filter = str(request.GET.get('filter'))
 
-    if filter_val == 'breakfast':
-        food_posts = FoodEntry.objects.filter(breakfast=True)
-    elif filter_val == 'vegan':
-        food_posts = FoodEntry.objects.filter(vegan=True)
-    elif filter_val == 'entree':
-        food_posts = FoodEntry.objects.filter(entree=True)
-    elif filter_val == 'snack':
-        food_posts = FoodEntry.objects.filter(snack=True)
+    # Select only the objects in the database that match the filter
+    if food_filter:
+        if food_filter == 'breakfast':
+            food_posts = FoodEntry.objects.filter(breakfast=True).filter(published=True)
+        elif food_filter == 'entree':
+            food_posts = FoodEntry.objects.filter(entree=True).filter(published=True)
+        elif food_filter == 'snack':
+            food_posts = FoodEntry.objects.filter(snack=True).filter(published=True)
+        elif food_filter == 'foodprep':
+            food_posts = FoodEntry.objects.filter(foodprep=True).filter(published=True)
+        elif food_filter == 'beverage':
+            food_posts = FoodEntry.objects.filter(snack=True).filter(published=True)
+
+        elif food_filter == 'vegan':
+            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+        elif food_filter == 'vegetarian':
+            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+        elif food_filter == 'glutenfree':
+            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+        else:
+            food_posts = FoodEntry.objects.filter().filter(published=True)
     else:
-        food_posts = FoodEntry.objects.filter()
+        food_posts = FoodEntry.objects.filter().filter(published=True)
 
     print(food_posts)
 
