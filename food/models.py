@@ -37,7 +37,6 @@ class FullIngredientList(models.Model):
         return self.name
 
 
-
 class Recipe(models.Model):
     """
     Recipe summary for the
@@ -48,8 +47,11 @@ class Recipe(models.Model):
         ('hours', 'hours'),
     )
 
+    date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
     title = models.CharField(max_length=50)
     cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
+
     servings = models.CharField(max_length=5)
     time_unit = models.CharField(choices=TIMES_UNITS, default='minutes', max_length=10)
     prep_time = models.CharField(max_length=3)
@@ -60,7 +62,8 @@ class Recipe(models.Model):
 
     total_time = models.CharField(max_length=3)
 
-    #ingredients = models.ManyToManyField(Ingredient)
+    def __str__(self):
+        return self.title
 
 
 class Ingredient(models.Model):
@@ -80,6 +83,9 @@ class Ingredient(models.Model):
     unit = models.CharField(choices=UNITS, blank=True, max_length=10)
     recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+       return self.ingredient_name.name
+
 
 class FoodEntry(models.Model):
     """
@@ -89,7 +95,7 @@ class FoodEntry(models.Model):
     # Recipe
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
 
-    title = models.CharField(max_length=50)
+    # title = models.CharField(max_length=50)
     summary = RichTextUploadingField(null=True)
     foodprep = RichTextUploadingField(null=True)
     content = RichTextUploadingField(null=True)
@@ -108,10 +114,7 @@ class FoodEntry(models.Model):
     published = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
-
-    class Meta:
-        ordering = ('title',)
+        return self.recipe.title
 
 
 class Image(models.Model):
@@ -120,7 +123,6 @@ class Image(models.Model):
     """
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to=get_image_upload_path)
-    # cover_photo = models.BooleanField(default=False)
     foodentry = models.ForeignKey(FoodEntry, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
