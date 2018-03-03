@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'search',
     'ckeditor',
     'ckeditor_uploader',
+    'comments',
     # 'cadmin',
 )
 

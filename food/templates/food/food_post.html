@@ -6,7 +6,6 @@
 
 <!-- Following Menu -->
 {% include "following_menu.html" %}
-<!-- Sidebar Menu -->
 {% include "sidebar_menu.html" %}
 
 <!-- Load the Stylesheet -->
@@ -15,12 +14,10 @@
 
 <!-- Page Contents -->
 <div class="pusher">
-
-  <!-- Header -->
-  <div class="ui inverted vertical center aligned segment">
-     {% include "header.html" %}
-  </div>
-
+    <!-- Header -->
+    <div class="ui inverted vertical center aligned segment">
+        {% include "header.html" %}
+    </div>
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             <div class="row">
@@ -84,19 +81,20 @@
         </div>
 
             <!-- Comments Section -->
-        <h2> Comments</h2>
-    {% for comment in post.comments.all %}
-    <div class="comment">
-        <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
-        <p>{{ comment.text|linebreaks }}</p>
-    </div>
-    {% empty %}
-        <p>No comments here yet :(</p>
-    {% endfor %}
-    </div>
+        <p class="lead">Comments </p>
+        <form method="POST" action="."> {% csrf_token %}
+            {{ comment_form }}
+            <input type="submit" value="Post comment" class="'btn btn-default">
+        </form>
 
+        <hr/>
+        {% for comment in comments %}
+        <p>{{ comment.content }}</p>
+        <footer> via {{ comment.user }} | {{ comment.timestamp|timesince }} ago</footer>
 
+        {% endfor %}
+        <hr/>
+    </div>
 </div>
 
   {% include "footer.html" %}
