@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import FoodEntry
+from .forms import FoodEntryForm
 
 
 # Create your views here.
@@ -64,3 +65,15 @@ def food_post(request, pk):
     }
 
     return render(request, 'food/food_post.html', context)
+
+
+# New food entry for
+def new_food_entry(request):
+    """
+    Create a new food entry, use this form instead of admin page
+    :param request:
+    :return:
+    """
+
+    form = FoodEntryForm()
+    return render(request, 'food/food_post_edit.html', {'form': form})
