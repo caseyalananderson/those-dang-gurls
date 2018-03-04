@@ -55,13 +55,20 @@
           </div>
           <div class="right menu">
               <div class="ui simple dropdown item">
-                Login
+                  {% if user.username %}
+                  {{ user.username }}
                   <i class="icon dropdown"></i>
                   <div class="menu">
-                      <a class="item"><i class="edit icon"></i>Social</a>
-                      <a class="item"><i class="globe icon"></i>Recipes</a>
-                      <a class="item"><i class="settings icon"></i>Videos</a>
-                </div>
+                      <a class="item" href="/logout/"><i class="edit icon"></i>Logout</a>
+                  </div>
+                  {% else %}
+                  Login
+                  <i class="icon dropdown"></i>
+                  <div class="menu">
+                      <a class="item" href="/login/"><i class="edit icon"></i>Login</a>
+                      <a class="item" href="/signup/"><i class="globe icon"></i>Signup</a>
+                  </div>
+                  {% endif %}
               </div>
           </div>
       </div>

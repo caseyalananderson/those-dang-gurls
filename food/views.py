@@ -20,6 +20,8 @@ def foodpost_list(request):
     :return:
     """
 
+    print(request.user.username)
+
     # get the name of the string called "filter"
     food_filter = str(request.GET.get('filter'))
 
@@ -45,8 +47,6 @@ def foodpost_list(request):
             food_posts = FoodPost.objects.filter().filter(published=True)
     else:
         food_posts = FoodPost.objects.filter().filter(published=True)
-
-    print(food_posts)
 
     context = {
         'food_posts': food_posts,
