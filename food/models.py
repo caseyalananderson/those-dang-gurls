@@ -11,14 +11,91 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 
+class PublishedQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(published=True)
+
+    def breakfast(self):
+        return self.filter(breakfast=True)
+
+    def entree(self):
+        return self.filter(entree=True)
+
+    def snack(self):
+        return self.filter(snack=True)
+
+    def dessert(self):
+        return self.filter(dessert=True)
+
+    def foodprep(self):
+        return self.filter(foodprep=True)
+
+    def beverage(self):
+        return self.filter(beverage=True)
+
+    def vegan(self):
+        return self.filter(vegan=True)
+
+    def vegetarian(self):
+        return self.filter(vegetarian=True)
+
+    def glutenfree(self):
+        return self.filter(glutenfree=True)
+
+
 class FoodPostManager(models.Manager):
     """
     Manage for the Comment section
     """
+    def get_published_qs(self):
+        return PublishedQuerySet(self.model, using=self._db)
+
+    def published(self):
+        return self.get_published_qs().published()
+
+    def breakfast(self):
+        return self.get_published_qs().published().breakfast()
+
+    def entree(self):
+        return self.get_published_qs().published().entree()
+
+    def snack(self):
+        return self.get_published_qs().published().snack()
+
+    def dessert(self):
+        return self.get_published_qs().published().dessert()
+
+    def foodprep(self):
+        return self.get_published_qs().published().foodprep()
+
+    def beverage(self):
+        return self.get_published_qs().published().beverage()
+
+    def vegan(self):
+        return self.get_published_qs().published().vegan()
+
+    def vegetarian(self):
+        return self.get_published_qs().published().vegetarian()
+
+    def glutenfree(self):
+        return self.get_published_qs().published().glutenfree()
+
     def filter_by_instance(self, instance):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         obj_id = instance.id
         qs = super(FoodPostManager, self).filter(content_type=content_type, object_id=obj_id)
+        return qs
+
+
+class RecipeManager(models.Manager):
+    """
+    Manager for the Recipes
+    """
+
+    def filter_by_instance(self, instance):
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        obj_id = instance.id
+        qs = super(RecipeManager, self).filter(content_type=content_type, object_id=obj_id)
         return qs
 
 
@@ -50,11 +127,8 @@ class Recipe(models.Model):
     """
 
     slug = models.SlugField(unique=True, null=False, default=None)
-
     title = models.CharField(max_length=50, default=None)
-
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-
     cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
 
     servings = models.CharField(max_length=5)
@@ -64,6 +138,8 @@ class Recipe(models.Model):
 
     directions = RichTextUploadingField(null=True)
     notes = RichTextUploadingField(null=True)
+
+    objects = RecipeManager()
 
     def __str__(self):
         return self.title
@@ -95,6 +171,8 @@ class FoodPost(models.Model):
     slug = models.SlugField(unique=True, null=False, default=None)
 
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    objects = FoodPostManager()
 
     # title = models.CharField(max_length=50)
     summary = RichTextUploadingField(null=True)
