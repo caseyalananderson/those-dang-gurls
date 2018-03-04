@@ -37,15 +37,18 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'recipes',
+
+    # main apps
     'index',
-    # 'blog',
     'food',
     'videos',
     'search',
+    'comments',
+    'users',
+
+    # supporting apps
     'ckeditor',
     'ckeditor_uploader',
-    'comments',
     'crispy_forms',
     # 'cadmin',
 )
