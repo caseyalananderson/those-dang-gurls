@@ -1,11 +1,8 @@
 from django.db import models
 
-# These two below are for auto-updating the youtube embed link
-import re
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-from food.models import FoodPost
 
 
 class Video(models.Model):

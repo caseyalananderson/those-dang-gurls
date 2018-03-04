@@ -4,6 +4,8 @@ from comments.models import Comment
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import reverse
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
 from django.utils import timezone
 
 from django.utils.text import slugify
@@ -33,12 +35,12 @@ def get_upload_path(instance, filename):
 
 def get_image_upload_path(instance, filename):
     """
-    Gets path of
+    Gets path of file to upload
     :param instance:
     :param filename:
     :return:
     """
-    no_space_title = str(instance.name.replace(' ', ''))
+    no_space_title = str(instance.title.replace(' ', ''))
     return os.path.join("uploads", no_space_title, filename)
 
 
@@ -47,9 +49,11 @@ class Recipe(models.Model):
     Recipe summary for the
     """
 
+    slug = models.SlugField(unique=True, null=False, default=None)
+    title = models.CharField(max_length=50, default=None)
+
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
-    title = models.CharField(max_length=50)
     cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
 
     servings = models.CharField(max_length=5)
@@ -83,7 +87,9 @@ class FoodPost(models.Model):
     """
 
     # Get the related recipe of the Food Post
+    title = models.CharField(max_length=50)
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, null=False, default=None)
 
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
@@ -135,9 +141,56 @@ class Image(models.Model):
     Images for the Food Entry
     """
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to=get_image_upload_path)
+    image = models.ImageField(upload_to=get_upload_path)
     foodpost = models.ForeignKey(FoodPost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.title
+
+
+def create_foodpost_slug(instance, new_slug=None):
+    """
+    Creates a slug for the Food Post
+    :param instance: recipe instance
+    :param new_slug: new slug
+    :return:
+    """
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+    qs = FoodPost.objects.filter(slug=slug).order_by("-id")
+    exists = qs.exists()
+    if exists:
+        new_slug = "%s-%s" %(slug, qs.first().id)
+        return create_foodpost_slug(instance, new_slug=new_slug)
+    return slug
+
+
+def create_recipe_slug(instance, new_slug=None):
+    """
+    Creates a slug for the recipe
+    :param instance: recipe instance
+    :param new_slug: new slug
+    :return:
+    """
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+    qs = Recipe.objects.filter(slug=slug).order_by("-id")
+    exists = qs.exists()
+    if exists:
+        new_slug = "%s-%s" %(slug, qs.first().id)
+        return create_recipe_slug(instance, new_slug=new_slug)
+    return slug
+
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(pre_save_post_receiver, sender=FoodPost)
+pre_save.connect(pre_save_post_receiver, sender=Recipe)
+
+
 

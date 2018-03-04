@@ -14,13 +14,14 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = [
         IngredientInline,
     ]
+    exclude = ('slug',)
 
 
-# increase size
 class FoodPostAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
+    exclude = ('slug',)
 
 
 admin.site.register(Recipe, RecipeAdmin)
