@@ -8,9 +8,6 @@
 {% include "following_menu.html" %}
 {% include "sidebar_menu.html" %}
 
-<!-- Load the Stylesheet -->
-<link rel="stylesheet" href="{% static 'css/food.css' %}">
-
 
 <!-- Page Contents -->
 <div class="pusher">
@@ -105,21 +102,26 @@
             {% for comment in comments %}
             <blockquote>
                 <p>{{ comment.content }}</p>
-                <footer> via {{ comment.user }} | {{ comment.timestamp|timesince }} ago</footer>
+                <footer>
+                    via {{ comment.user }} | {{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}
+                    {{ comment.children.count }} Comment{% if comment.children.counts > 1 %}s{% endif %} | {% endif %}
+                    <a class="comment-reply-btn" href="#">Reply</a>
+                </footer>
 
-                {% for child_comment in comment.children %}
-                <blockquote>
-                    <p>{{ child_comment.content }}</p>
-                    <footer> via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                </blockquote>
-                {% endfor %}
-
-            <form method="POST" action="."> {% csrf_token %}
-                {{ comment_form }}
-                <p> </p>
-                <input type="hidden" name="parent_id" value='{{ comment.id }}'>
-                <input type="submit" value="Reply" class="'btn btn-default">
-            </form>
+                <div class="comment-reply" style="display:none">
+                    {% for child_comment in comment.children %}
+                    <blockquote>
+                        <p>{{ child_comment.content }}</p>
+                        <footer> via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
+                    </blockquote>
+                    {% endfor %}
+                    <form method="POST" action="."> {% csrf_token %}
+                        {{ comment_form }}
+                        <p> </p>
+                        <input type="hidden" name="parent_id" value='{{ comment.id }}'>
+                        <input type="submit" value="Reply" class="'btn btn-default">
+                    </form>
+                </div>
             </blockquote>
         {% endfor %}
         </div>>
