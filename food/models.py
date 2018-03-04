@@ -50,6 +50,7 @@ class Recipe(models.Model):
     """
 
     slug = models.SlugField(unique=True, null=False, default=None)
+
     title = models.CharField(max_length=50, default=None)
 
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -89,6 +90,8 @@ class FoodPost(models.Model):
     # Get the related recipe of the Food Post
     title = models.CharField(max_length=50)
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+    cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
+
     slug = models.SlugField(unique=True, null=False, default=None)
 
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -124,7 +127,7 @@ class FoodPost(models.Model):
         return content_type
 
     def get_absolute_url(self):
-        return reverse("food_post", kwargs={"pk": self.pk})
+        return reverse("foodpost_detail", kwargs={"pk": self.pk})
 
     class Meta:
         ordering = ["-timestamp"]

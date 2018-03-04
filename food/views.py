@@ -12,7 +12,7 @@ from comments.models import Comment
 
 
 # Create your views here.
-def food_list(request):
+def foodpost_list(request):
     """
     Main index that displays blog post.
     Grabs "filter" from cookies in order to filter the query of the database
@@ -52,11 +52,11 @@ def food_list(request):
         'food_posts': food_posts,
     }
 
-    return render(request, 'food/food_list.html', context)
+    return render(request, 'food/foodpost_list.html', context)
 
 
 # Create your views here.
-def food_post(request, pk):
+def foodpost_detail(request, pk):
     """
     Main index that displays blog post
     :param request:
@@ -113,7 +113,7 @@ def food_post(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'food/food_post.html', context)
+    return render(request, 'food/foodpost_detail.html', context)
 
 
 ''''''

@@ -19,7 +19,7 @@
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                    <h1><a href="{% url 'food_post' pk=post.pk %}">{{ post.recipe.title }}</a></h1>
+                    <h1><a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.recipe.title }}</a></h1>
                     <div class="extra">
 
                         {% if post.vegan %}
@@ -51,7 +51,7 @@
 
             </div>
             <div class="row">
-                <div class="sixtteen wide column">
+                <div class="sixteen wide column">
                     {{ post.content|safe }}
                 </div>
             </div>
@@ -75,60 +75,46 @@
                     <h1> {{ post.recipe.summary|safe }} </h1>
                 </div>
             </div>
-        </div>
-
-        <!--Comments Section -->
-        <!-- another way to do form
-        <form class="ui reply form" method="POST", action="."> {% csrf_token %}
-                <div class="field">
-                    {{ comment_form }}
-                </div>
-                <div class="ui blue labeled submit icon button">
-                    <i class="icon edit"></i> Add Reply
-                </div>
-            </form>
-        -->
-
-        <div class="ui comments">
-            <h3 class="ui dividing header">Comments</h3>
-            <div class="comment">
-                <p class="lead">Comments </p>
-                <form method="POST" action="."> {% csrf_token %}
-                    {{ comment_form }}
-                    <p> </p>
-                    <input type="submit" value="Post Comment" class="'btn btn-default">
-                </form>
-            </div>
-            {% for comment in comments %}
-            <blockquote>
-                <p>{{ comment.content }}</p>
-                <footer>
-                    via {{ comment.user }} | {{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}
-                    {{ comment.children.count }} Comment{% if comment.children.counts > 1 %}s{% endif %} | {% endif %}
-                    <a class="comment-reply-btn" href="#">Reply</a>
-                </footer>
-
-                <div class="comment-reply" style="display:none">
-                    {% for child_comment in comment.children %}
-                    <blockquote>
-                        <p>{{ child_comment.content }}</p>
-                        <footer> via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                    </blockquote>
-                    {% endfor %}
+            
+            <div class="sixteen wide column">
+                <h3 class="ui comments dividing header">Comments</h3>
+                <div class="comment">
+                    <p class="lead">Comments </p>
                     <form method="POST" action="."> {% csrf_token %}
                         {{ comment_form }}
                         <p> </p>
-                        <input type="hidden" name="parent_id" value='{{ comment.id }}'>
-                        <input type="submit" value="Reply" class="'btn btn-default">
+                        <button type="submit" class="ui submit button" value="Post Comment">Post Comment</button>
                     </form>
                 </div>
-            </blockquote>
+                {% for comment in comments %}
+                <blockquote>
+                    <p>{{ comment.content }}</p>
+                    <footer>
+                        via {{ comment.user }} | {{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}
+                        {{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} | {% endif %}
+                        <a class="comment-reply-btn" href="#">Reply</a>
+                    </footer>
+                    <div class="comment-reply" style="display:none">
+                        {% for child_comment in comment.children %}
+                        <blockquote>
+                            <p>{{ child_comment.content }}</p>
+                            <footer> via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
+                        </blockquote>
+                        {% endfor %}
+                        <form method="POST" action="."> {% csrf_token %}
+                            {{ comment_form }}
+                            <p> </p>
+                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>
+                            <button type="submit" class="ui submit button" value="Reply">Reply</button>
+                        </form>
+                    </div>
+                </blockquote>
+            </div>
         {% endfor %}
         </div>>
     </div>
 </div>
 
-  {% include "footer.html" %}
-
+{% include "footer.html" %}
 
 {% endblock %}
