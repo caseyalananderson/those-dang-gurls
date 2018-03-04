@@ -5,6 +5,7 @@ import datetime
 from comments.models import Comment
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import reverse
 
 
 class FoodEntryManager(models.Manager):
@@ -115,13 +116,16 @@ class FoodEntry(models.Model):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         return content_type
 
+    def get_absolute_url(self):
+        return reverse("food_post", kwargs={"pk": self.pk})
+
     class Meta:
         ordering = ["-timestamp"]
 
     def __str__(self):
         return self.recipe.title
 
-    def __str__(self):
+    def __unicode__(self):
         return self.recipe.title
 
 

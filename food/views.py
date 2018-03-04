@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from .models import FoodEntry
 from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 
 # Pertaining to Comments
 from django.contrib.contenttypes.models import ContentType
@@ -72,23 +73,37 @@ def food_post(request, pk):
     }
 
     comment_form = CommentForm(request.POST or None, initial=initial_data)
-    if comment_form.is_valid():
-        c_type = comment_form.cleaned_data.get("content_type")
 
-        # TODO: Fix this little hack, somehow spaces seem to be an issue
-        try:
+    if comment_form.is_valid():
+        parent_obj = None
+        c_type = comment_form.cleaned_data.get("content_type")
+        print(c_type)
+        try:  # TODO: This is my hack to fix <food entry> -> <foodentry> ContentType
             content_type = ContentType.objects.get(model=c_type)
         except:
             content_type = ContentType.objects.get(model=c_type.replace(' ', ''))
         obj_id = comment_form.cleaned_data.get("object_id")
+
+        try:  # Get parent ID of
+            parent_id = int(request.POST.get("parent_id"))
+        except:
+            parent_id = None
+
+        if parent_id:  # Verify parent id exists
+            parent_qs = Comment.objects.filter(id=parent_id)
+            if parent_qs.exists and parent_qs.count() == 1:
+                parent_obj = parent_qs.first()
+
         content_data = comment_form.cleaned_data.get("content")
-        print(content_data)
+
         new_comment, created = Comment.objects.get_or_create(
             # user=request.user,
             content_type=content_type,
             object_id=obj_id,
             content=content_data,
+            parent=parent_obj,
         )
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
 
     context = {
         'post': instance,

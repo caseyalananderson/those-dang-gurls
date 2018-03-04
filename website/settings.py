@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'comments',
+    'crispy_forms',
     # 'cadmin',
 )
 
@@ -130,9 +131,9 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-####################################
-## CKEDITOR CONFIGURATION ##
-####################################
+###################################
+# CKEDITOR CONFIGURATION ##
+###################################
 
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 
@@ -146,3 +147,6 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
