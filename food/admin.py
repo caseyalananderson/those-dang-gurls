@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FoodEntry, Recipe, Image, Ingredient
+from .models import FoodPost, Recipe, Image, Ingredient
 
 
 class ImageInline(admin.TabularInline):
@@ -17,11 +17,11 @@ class RecipeAdmin(admin.ModelAdmin):
 
 
 # increase size
-class FoodEntryAdmin(admin.ModelAdmin):
+class FoodPostAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(FoodEntry, FoodEntryAdmin)
+admin.site.register(FoodPost, FoodPostAdmin)

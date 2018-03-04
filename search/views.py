@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from food.models import FoodEntry, Recipe
+from food.models import FoodPost, Recipe
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.views.generic import ListView
 from django.http import HttpResponse
@@ -17,7 +17,7 @@ def search(request):
     :return:
     """
 
-    qs = FoodEntry.objects.all()
+    qs = FoodPost.objects.all()
 
     keywords = request.GET.get('search_box')
     if keywords:

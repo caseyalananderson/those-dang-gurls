@@ -1,27 +1,28 @@
 from django.db import models
 import os
-from django.conf import settings
-import datetime
 from comments.models import Comment
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import reverse
+from django.utils import timezone
+
+from django.utils.text import slugify
 
 
-class FoodEntryManager(models.Manager):
+class FoodPostManager(models.Manager):
     """
     Manage for the Comment section
     """
     def filter_by_instance(self, instance):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         obj_id = instance.id
-        qs = super(FoodEntryManager, self).filter(content_type=content_type, object_id=obj_id)
+        qs = super(FoodPostManager, self).filter(content_type=content_type, object_id=obj_id)
         return qs
 
 
 def get_upload_path(instance, filename):
     """
-    Gets path of
+    Gets path of file to upload
     :param instance:
     :param filename:
     :return:
@@ -76,15 +77,15 @@ class Ingredient(models.Model):
         return self.ingredient_name
 
 
-class FoodEntry(models.Model):
+class FoodPost(models.Model):
     """
     Class that holds all the entries
     """
 
-    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-
-    # Recipe
+    # Get the related recipe of the Food Post
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     # title = models.CharField(max_length=50)
     summary = RichTextUploadingField(null=True)
@@ -133,10 +134,10 @@ class Image(models.Model):
     """
     Images for the Food Entry
     """
-    name = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     image = models.ImageField(upload_to=get_image_upload_path)
-    foodentry = models.ForeignKey(FoodEntry, null=True, blank=True, on_delete=models.CASCADE)
+    foodentry = models.ForeignKey(FoodPost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
-        return self.name
+        return self.title
 

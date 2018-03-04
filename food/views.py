@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import FoodEntry
+from .models import FoodPost
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
@@ -26,25 +26,25 @@ def food_list(request):
     # Select only the objects in the database that match the filter
     if food_filter:
         if food_filter == 'breakfast':
-            food_posts = FoodEntry.objects.filter(breakfast=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(breakfast=True).filter(published=True)
         elif food_filter == 'entree':
-            food_posts = FoodEntry.objects.filter(entree=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(entree=True).filter(published=True)
         elif food_filter == 'snack':
-            food_posts = FoodEntry.objects.filter(snack=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(snack=True).filter(published=True)
         elif food_filter == 'foodprep':
-            food_posts = FoodEntry.objects.filter(foodprep=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(foodprep=True).filter(published=True)
         elif food_filter == 'beverage':
-            food_posts = FoodEntry.objects.filter(snack=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(snack=True).filter(published=True)
         elif food_filter == 'vegan':
-            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
         elif food_filter == 'vegetarian':
-            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
         elif food_filter == 'glutenfree':
-            food_posts = FoodEntry.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
         else:
-            food_posts = FoodEntry.objects.filter().filter(published=True)
+            food_posts = FoodPost.objects.filter().filter(published=True)
     else:
-        food_posts = FoodEntry.objects.filter().filter(published=True)
+        food_posts = FoodPost.objects.filter().filter(published=True)
 
     print(food_posts)
 
@@ -63,7 +63,7 @@ def food_post(request, pk):
     :param pk: Primary key of the food post
     :return:
     """
-    instance = get_object_or_404(FoodEntry, pk=pk)
+    instance = get_object_or_404(FoodPost, pk=pk)
     thumbnail = instance.recipe.cover_photo
     comments = instance.comments
 
@@ -125,15 +125,15 @@ def add_comment(request, pk):
     :return:
     """
 
-    food_post = get_object_or_404(FoodEntry, pk=pk)
+    food_post = get_object_or_404(FoodPost, pk=pk)
 
     if request.method == "POST":
-        form = FoodEntryCommentForm(request.POST)
+        form = FoodPostCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.food_post = food_post
             comment.save()
             return redirect('food_post', pk=food_post.pk)
     else:
-        form = FoodEntryCommentForm()
+        form = FoodPostCommentForm()
     return render(request, 'add_comment.html', {'form': form})
