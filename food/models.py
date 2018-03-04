@@ -40,7 +40,7 @@ def get_image_upload_path(instance, filename):
     :param filename:
     :return:
     """
-    no_space_title = str(instance.title.replace(' ', ''))
+    no_space_title = str(instance.foodpost.title.replace(' ', ''))
     return os.path.join("uploads", no_space_title, filename)
 
 
@@ -141,7 +141,7 @@ class Image(models.Model):
     Images for the Food Entry
     """
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to=get_upload_path)
+    image = models.ImageField(upload_to=get_image_upload_path)
     foodpost = models.ForeignKey(FoodPost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
