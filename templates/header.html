@@ -9,16 +9,16 @@
               <div class="dropdown vertical menu">
                   <a class="item" href="{% url 'foodpost_list' %}?filter=breakfast">Breakfast </a>
                   <a class="item" href="{% url 'foodpost_list' %}?filter=entree"><i class="edit icon"></i>Entree</a>
-                  <a class="item" href="{% url 'foodpost_list' %}filter=snack"><i class="edit icon"></i>Snack</a>
-                  <a class="item" href="{% url 'foodpost_list' %}filter=dessert"><i class="edit icon"></i>Desert</a>
-                  <a class="item" href="{% url 'foodpost_list' %}filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
-                  <a class="item" href="{% url 'foodpost_list' %}filter=beverages"><i class="edit icon"></i>Beverages</a>
+                  <a class="item" href="{% url 'foodpost_list' %}?filter=snack"><i class="edit icon"></i>Snack</a>
+                  <a class="item" href="{% url 'foodpost_list' %}?filter=dessert"><i class="edit icon"></i>Desert</a>
+                  <a class="item" href="{% url 'foodpost_list' %}?filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
+                  <a class="item" href="{% url 'foodpost_list' %}?filter=beverages"><i class="edit icon"></i>Beverages</a>
                   <div class="ui simple dropdown item">
                       More
                       <i class="icon dropdown"></i>
                       <div class="dropdown vertical menu">
-                          <a class="item" href="/food?filter=vegan"><i class="edit icon"></i>Vegan</a>
-                          <a class="item" href="/food?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
+                          <a class="item" href="{% url 'foodpost_list' %}?filter=vegan"><i class="edit icon"></i>Vegan</a>
+                          <a class="item" href="{% url 'foodpost_list' %}?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
                       </div>
                   </div>
               </div>
