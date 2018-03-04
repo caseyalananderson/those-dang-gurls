@@ -136,7 +136,7 @@ class Image(models.Model):
     """
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to=get_image_upload_path)
-    foodentry = models.ForeignKey(FoodPost, null=True, blank=True, on_delete=models.CASCADE)
+    foodpost = models.ForeignKey(FoodPost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.title

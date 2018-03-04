@@ -5,9 +5,6 @@ import re
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
-# Create your models here.
-# from recipes.models import Recipe
 from food.models import FoodPost
 
 
@@ -21,14 +18,12 @@ class Video(models.Model):
     youtube_link = models.URLField(null=False)
     youtube_embed_link = models.URLField(max_length=100, blank=True)
     description = models.TextField(null=True)
-    related_foodentry = models.ForeignKey(FoodPost, blank=True, null=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ('title',)
-        # exclude = ['youtube_embed_link']
 
 
 @receiver(post_save, sender=Video)

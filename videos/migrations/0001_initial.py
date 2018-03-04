@@ -24,7 +24,6 @@ class Migration(migrations.Migration):
                 ('youtube_link', models.URLField()),
                 ('youtube_embed_link', models.URLField(blank=True, max_length=100)),
                 ('description', models.TextField(null=True)),
-                ('related_foodentry', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='food.FoodEntry')),
             ],
             options={
                 'ordering': ('title',),
