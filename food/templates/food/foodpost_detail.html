@@ -56,26 +56,36 @@
                 </div>
             </div>
 
-            <div class="eight wide column">
+            <div class="sixteen wide column centered grid">
                 <h1>Recipe </h1>
+                <table id="recipe-table" class="ui celled table" cellspacing="10">
+                    <thead>
+                        <tr>
+                            <th>Ingredient</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingredient in post.recipe.ingredient_set.all %}
+                        <tr>
+                            <td>{{ ingredient.ingredient_name }} </td>
+                            <td> {{ ingredient.quantity }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
                 <p> Servings = {{ post.recipe.servings }}</p>
-
                 <p>Prep Time = {{ post.recipe.prep_time }}</p>
 
                 <p> Cook Time = {{ post.recipe.cook_time }}</p>
 
                  <p>Total Time = {{ post.recipe.total_time }}</p>
 
-                <h4> Ingredients </h4>
-                {% for ingredient in post.recipe.ingredient_set.all %}
-                   <p> {{ ingredient.ingredient_name }} {{ ingredient.quantity }} </p>
-                {% endfor %}
-
                 <div class="extra">
                     <h1> {{ post.recipe.summary|safe }} </h1>
                 </div>
             </div>
-            
+
             <div class="sixteen wide column">
                 <h3 class="ui comments dividing header">Comments</h3>
                 <div class="comment">
@@ -111,9 +121,10 @@
                 </blockquote>
             </div>
         {% endfor %}
-        </div>>
+        </div>
     </div>
 </div>
+
 
 {% include "footer.html" %}
 
