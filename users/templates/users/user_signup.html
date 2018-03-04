@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
+
+<!-- Following Menu -->
+{% include "following_menu.html" %}
+{% include "sidebar_menu.html" %}
+
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}

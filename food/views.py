@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 # Pertaining to Comments
 from django.contrib.contenttypes.models import ContentType
+from django.contrib import messages
 
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -96,14 +97,19 @@ def foodpost_detail(request, pk):
 
         content_data = comment_form.cleaned_data.get("content")
 
-        new_comment, created = Comment.objects.get_or_create(
-            # user=request.user,
-            content_type=content_type,
-            object_id=obj_id,
-            content=content_data,
-            parent=parent_obj,
-        )
-        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+        if request.user.username:  # Must be logged in to post comment
+            new_comment, created = Comment.objects.get_or_create(
+                user=request.user,
+                content_type=content_type,
+                object_id=obj_id,
+                content=content_data,
+                parent=parent_obj,
+            )
+            messages.info(request, 'You comment has been post')
+            return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+        else:
+            messages.info(request, 'You must Login in order to comment!')
+            return HttpResponseRedirect('.')
 
     context = {
         'post': instance,

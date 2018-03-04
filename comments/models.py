@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.admin import GenericForeignKey
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class CommentManager(models.Manager):
@@ -28,6 +30,7 @@ class Comment(models.Model):
     """
     Comments for the website, managed by CommentManager
     """
+    user = models.ForeignKey(User, default=1)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     object_id = models.PositiveIntegerField(null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
