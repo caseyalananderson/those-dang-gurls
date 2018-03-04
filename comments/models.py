@@ -14,7 +14,7 @@ class CommentManager(models.Manager):
     """
     def all(self):
         """
-        Overrides all method to only show the First comments
+        Overrides all method to only show the non-parent comments
         """
         qs = super(CommentManager, self).filter(parent=None)
         return qs

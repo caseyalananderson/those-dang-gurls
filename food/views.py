@@ -26,28 +26,29 @@ def foodpost_list(request):
     # get the name of the string called "filter"
     food_filter = str(request.GET.get('filter'))
 
-    # Select only the objects in the database that match the filter
-    if food_filter:
+    if food_filter:  # Select the matched ones that match the filter
         if food_filter == 'breakfast':
-            food_posts = FoodPost.objects.filter(breakfast=True).filter(published=True)
+            food_posts = FoodPost.objects.breakfast()
         elif food_filter == 'entree':
-            food_posts = FoodPost.objects.filter(entree=True).filter(published=True)
+            food_posts = FoodPost.objects.entree()
         elif food_filter == 'snack':
-            food_posts = FoodPost.objects.filter(snack=True).filter(published=True)
+            food_posts = FoodPost.objects.snack()
+        elif food_filter == 'dessert':
+            food_posts = FoodPost.objects.dessert()
         elif food_filter == 'foodprep':
-            food_posts = FoodPost.objects.filter(foodprep=True).filter(published=True)
+            food_posts = FoodPost.objects.foodprep()
         elif food_filter == 'beverage':
-            food_posts = FoodPost.objects.filter(snack=True).filter(published=True)
+            food_posts = FoodPost.objects.beverage()
         elif food_filter == 'vegan':
-            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.vegan()
         elif food_filter == 'vegetarian':
-            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.vegetarian()
         elif food_filter == 'glutenfree':
-            food_posts = FoodPost.objects.filter(vegan=True).filter(published=True)
+            food_posts = FoodPost.objects.glutenfree()
         else:
-            food_posts = FoodPost.objects.filter().filter(published=True)
+            food_posts = FoodPost.objects.published()
     else:
-        food_posts = FoodPost.objects.filter().filter(published=True)
+        food_posts = FoodPost.objects.published()
 
     context = {
         'food_posts': food_posts,
@@ -60,10 +61,11 @@ def foodpost_list(request):
 def foodpost_detail(request, pk):
     """
     Main index that displays blog post
-    :param request:
+    :param request: django request
     :param pk: Primary key of the food post
     :return:
     """
+
     instance = get_object_or_404(FoodPost, pk=pk)
     thumbnail = instance.recipe.cover_photo
     comments = instance.comments
@@ -75,22 +77,21 @@ def foodpost_detail(request, pk):
 
     comment_form = CommentForm(request.POST or None, initial=initial_data)
 
-    if comment_form.is_valid():
+    if comment_form.is_valid():  # If the comment form is valid
         parent_obj = None
         c_type = comment_form.cleaned_data.get("content_type")
-        print(c_type)
-        try:  # TODO: This is my hack to fix <food entry> -> <foodentry> ContentType
+        try:  # TODO: Hack to fix <food entry> -> <foodentry> ContentType
             content_type = ContentType.objects.get(model=c_type)
         except:
             content_type = ContentType.objects.get(model=c_type.replace(' ', ''))
         obj_id = comment_form.cleaned_data.get("object_id")
 
-        try:  # Get parent ID of
+        try:  # Get the id of the parent comment
             parent_id = int(request.POST.get("parent_id"))
         except:
             parent_id = None
 
-        if parent_id:  # Verify parent id exists
+        if parent_id:  # Verify parent id exists, get the first
             parent_qs = Comment.objects.filter(id=parent_id)
             if parent_qs.exists and parent_qs.count() == 1:
                 parent_obj = parent_qs.first()
@@ -105,10 +106,8 @@ def foodpost_detail(request, pk):
                 content=content_data,
                 parent=parent_obj,
             )
-            messages.info(request, 'You comment has been post')
             return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
         else:
-            messages.info(request, 'You must Login in order to comment!')
             return HttpResponseRedirect('.')
 
     context = {

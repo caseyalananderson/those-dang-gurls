@@ -163,6 +163,8 @@ class FoodPost(models.Model):
     Class that holds all the entries
     """
 
+    published = models.BooleanField(default=False)
+
     # Get the related recipe of the Food Post
     title = models.CharField(max_length=50)
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
@@ -182,15 +184,13 @@ class FoodPost(models.Model):
     breakfast = models.BooleanField(default=False)
     entree = models.BooleanField(default=False)
     snack = models.BooleanField(default=False)
-    desert = models.BooleanField(default=False)
+    dessert = models.BooleanField(default=False)
     savory = models.BooleanField(default=False)
 
     vegan = models.BooleanField(default=False)
     healthy = models.BooleanField(default=False)
     vegetarian = models.BooleanField(default=False)
     gluten_free = models.BooleanField(default=False)
-
-    published = models.BooleanField(default=False)
 
     @property
     def comments(self):
