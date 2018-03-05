@@ -46,10 +46,11 @@ INSTALLED_APPS = (
     'comments',
     'users',
 
-    # supporting apps
+    # supporting apps (editor, forms,
     'ckeditor',
     'ckeditor_uploader',
-    'crispy_forms',
+    # 'crispy_forms',
+    'columns',
     # 'cadmin',
 )
 

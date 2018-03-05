@@ -14,14 +14,22 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = [
         IngredientInline,
     ]
-    exclude = ('slug',)
+    exclude = ('slug', 'author',)
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        obj.save()
 
 
 class FoodPostAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
-    exclude = ('slug',)
+    exclude = ('slug', 'author',)
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        obj.save()
 
 
 admin.site.register(Recipe, RecipeAdmin)

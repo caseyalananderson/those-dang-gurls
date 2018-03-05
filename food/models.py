@@ -126,11 +126,18 @@ class Recipe(models.Model):
     """
     Recipe summary for the
     """
+    # Hidden fields
     author = models.ForeignKey(User, default=1)
     slug = models.SlugField(unique=True, null=False, default=None)
+
+    # Some main Fields
     title = models.CharField(max_length=50, default=None)
-    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
+
+    # Dates
+    publish_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    updated_date = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
 
     servings = models.CharField(max_length=5)
     prep_time = models.CharField(max_length=20)
@@ -164,9 +171,11 @@ class FoodPost(models.Model):
     Class that holds all the entries
     """
 
+    # Hidden Fields
     author = models.ForeignKey(User, default=1)
     slug = models.SlugField(unique=True, null=False, default=None)
 
+    # This is a boolean for now to show if you want it published
     published = models.BooleanField(default=False)
 
     # Get the related recipe of the Food Post
@@ -174,7 +183,10 @@ class FoodPost(models.Model):
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
     cover_photo = models.ImageField(upload_to=get_upload_path, blank=True, null=True)
 
-    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    # Dates
+    publish_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    updated_date = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
 
     objects = FoodPostManager()
 

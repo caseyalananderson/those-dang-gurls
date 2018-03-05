@@ -54,4 +54,7 @@ class Comment(models.Model):
         return True
 
     def __str__(self):
-        return str('comment')
+        return str(self.user)
+
+    def __unicode__(self):
+        return str(self.user)

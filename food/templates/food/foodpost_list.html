@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load columns %}
 
 {% load static from staticfiles %}
 
@@ -12,56 +13,68 @@
 <!-- Page Contents -->
 <div class="pusher">
 
-  <!-- Header -->
-  <div class="ui inverted vertical center aligned segment">
+    <!-- Header -->
+    <div class="ui inverted vertical center aligned segment">
      {% include "header.html" %}
-  </div>
+    </div>
 
-    {% if food_posts %}
-
-    {% for post in food_posts %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
+            {% if food_posts %}
             <div class="row">
-                <div class="eight wide column">
-                    <h1><a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.recipe.title }}</a></h1>
-                    <div class="extra">
-                        {% if post.vegan %}
-                        <span data-tooltip="Vegan">
-                            <img src="{% static 'icons/vegan.jpg' %}">
-                        </span>
+                {% for col in food_posts|columns:4 %}
+                <div class="col-md-3">
+                    {% for post in col %}
+                    <div class="ui centered item">
+                        <h1 align="center">
+                            <a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.title }}</a>
+                        </h1>
+                        {% if post.cover_photo %}
+                        <img class="ui center floated image" src="{{ post.cover_photo.url }}"
+                             height="300" width="400">
                         {% endif %}
-                        {% if post.healthy %}
-                        <span data-tooltip="Healthy">
-                            <img src="{% static 'icons/healthy.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.vegetarian %}
-                         <span data-tooltip="Vegetarian">
-                            <img src="{% static 'icons/vegetarian.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.gluten_free %}
-                        <span data-tooltip="Gluten Free">
-                            <img src="{% static 'icons/gluten_free.jpg' %}">
-                        </span>
-                        {% endif %}
+                        <h4 align="center">
+                            Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                            Date Created: {{ post.publish_date }}
+                        </h4>
+                        <div class="extra">
+                            {% if post.vegan %}
+                            <span data-tooltip="Vegan">
+                                <img src="{% static 'icons/vegan.jpg' %}">
+                            </span>
+                            {% endif %}
+                            {% if post.healthy %}
+                            <span data-tooltip="Healthy">
+                                <img src="{% static 'icons/healthy.jpg' %}">
+                            </span>
+                            {% endif %}
+                            {% if post.vegetarian %}
+                             <span data-tooltip="Vegetarian">
+                                <img src="{% static 'icons/vegetarian.jpg' %}">
+                            </span>
+                            {% endif %}
+                            {% if post.gluten_free %}
+                            <span data-tooltip="Gluten Free">
+                                <img src="{% static 'icons/gluten_free.jpg' %}">
+                            </span>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-
+                    {% endfor %}
+                </div><!-- /col-md-4 -->
+                {% endfor %}
+            </div><!-- /row -->
+            {% else %}
+            <div class="row">
+                <h2>Nothing matched!</h2>
+                <p> We are a new and upcoming website and are trying to
+                    populate the database as fast as we can with entries.
+                    Please be patient and get back to us soon!
+                </p>
             </div>
+            {% endif %}
         </div>
     </div>
-    {% endfor %}
-
-    {% else %}
-    <h2>Nothing matched!</h2>
-    <p> We are a new and upcoming website and are trying to
-        populate the database as fast as we can with entries.
-
-        Please be patient and get back to us soon!
-    </p>
-    {% endif %}
 </div>
 
 
