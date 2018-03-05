@@ -64,23 +64,23 @@
                 </div><!-- /col-md-4 -->
                 {% endfor %}
             </div><!-- /row -->
+
             <!-- Pagination -->
-            <div class="row">
-                <span class="step-links">
+            <div class="sixteen wide column">
+                <h4 class="ui centered step-links">
                     {% if food_posts.has_previous %}
-                    <a href="?page=1">&laquo; First </a>
+                    <a href="?page=1">&laquo; First | </a>
                     <a href="?page={{ food_posts.previous_page_number }}"> Previous </a>
                     {% endif %}
-                    <span class="current">
-                        Page {{ food_posts.number }} of {{ food_posts.paginator.num_pages }}.
-                    </span>
-                    
-                    {% if food_posts.has_next %}
-                    <a href="?page={{ food_posts.next_page_number }}"> Next </a>
-                    <a href="?page={{ food_posts.paginator.num_pages }}">Last &raquo;</a>
-                    {% endif %}
-                </span>
 
+                    {% if food_posts.has_next %}
+                    <a href="?page={{ food_posts.next_page_number }}"> Next | </a>
+                    <a href="?page={{ food_posts.paginator.num_pages }}"> Last &raquo;</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ food_posts.number }} of {{ food_posts.paginator.num_pages }}
+                    </span>
+                </h4>
             </div>
             {% else %}
             <div class="row">
