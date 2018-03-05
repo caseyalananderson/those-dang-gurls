@@ -19,52 +19,11 @@
         <div class="ui middle aligned stackable grid container">
             <div class="row">
                 <div class="eight wide column">
-                    <h1><a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                    <h4>
-                        Author: {{ post.author.first_name }} {{ post.author.last_name }} | Date Created: {{ post.publish_date }}
-                    </h4>
-                    <div class="extra">
-                        {% if post.vegan %}
-                        <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
-                        {% endif %}
-                        {% if post.healthy %}
-                        <span data-tooltip="Healthy">
-                            <img src="{% static 'icons/healthy.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.vegetarian %}
-                         <span data-tooltip="Vegetarian">
-                            <img src="{% static 'icons/vegetarian.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.gluten_free %}
-                        <span data-tooltip="Gluten Free">
-                            <img src="{% static 'icons/gluten_free.jpg' %}">
-                        </span>
-                        {% endif %}
-                    </div>
-                    
-                    {{ post.summary|safe }}
-
-                </div>
-                <div class="six wide right floated column">
-                            <img src="{{ post.recipe.cover_photo.url }}"  class="ui center large bordered rounded image">
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="sixteen wide column">
-                    {{ post.content|safe }}
-                </div>
-            </div>
-
-            <div class="sixteen wide column centered grid">
-                <h1>Recipe </h1>
-                <h1><a href="{% url 'recipe_detail' pk=post.recipe.pk %}">{{ post.recipe.title }}</a></h1>
+                <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
                 <h4>
-                    Author: {{ post.recipe.author.first_name }} {{ post.recipe.author.last_name }} <br>
+                    Author: {{ recipe.author.first_name }} {{ recipe.author.last_name }} <br>
 
-                    Date Created: {{ post.recipe.publish_date }}
+                    Date Created: {{ recipe.publish_date }}
                 </h4>
                 <table id="recipe-table" class="ui celled table" cellspacing="10">
                     <thead>
@@ -74,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for ingredient in post.recipe.ingredient_set.all %}
+                        {% for ingredient in recipe.ingredient_set.all %}
                         <tr>
                             <td>{{ ingredient.ingredient_name }} </td>
                             <td> {{ ingredient.quantity }} </td>
@@ -82,15 +41,15 @@
                         {% endfor %}
                     </tbody>
                 </table>
-                <p> Servings = {{ post.recipe.servings }}</p>
-                <p>Prep Time = {{ post.recipe.prep_time }}</p>
+                <p> Servings = {{ recipe.servings }}</p>
+                <p>Prep Time = {{ recipe.prep_time }}</p>
 
-                <p> Cook Time = {{ post.recipe.cook_time }}</p>
+                <p> Cook Time = {{ recipe.cook_time }}</p>
 
-                 <p>Total Time = {{ post.recipe.total_time }}</p>
+                 <p>Total Time = {{ recipe.total_time }}</p>
 
                 <div class="extra">
-                    <h1> {{ post.recipe.summary|safe }} </h1>
+                    <h1> {{ recipe.summary|safe }} </h1>
                 </div>
             </div>
 

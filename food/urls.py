@@ -2,14 +2,13 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # main URL
-    url(r'^$', views.foodpost_list, name='foodpost_list'),
 
-    # Filter url
-    url(r'^(?P<pk>\d+)/$', views.foodpost_detail, name='foodpost_detail'),
+    # Posts
+    url(r'^post/$', views.foodpost_list, name='foodpost_list'),
+    url(r'^post/(?P<pk>\d+)/$', views.foodpost_detail, name='foodpost_detail'),
 
-    # Add Comment
-    url(r'^(?P<pk>\d+)/comment/$', views.add_comment, name='add_comment'),
+    # Recipes
+    url(r'^recipe/$', views.recipe_list, name='recipe_list'),
+    url(r'^recipe/(?P<pk>\d+)/$', views.recipe_detail, name='recipe_detail'),
 
-    # url(r'^post/new/$', views.new_food_entry, name='new_food_entry'),
 ]

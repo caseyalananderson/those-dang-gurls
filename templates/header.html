@@ -4,7 +4,7 @@
       <div class="menu">
           <div class="ui simple dropdown item">
               <i class="icon food blue"></i>
-              <a href="/food"> Food </a>
+              <a href="{% url 'foodpost_list' %}"> Food </a>
               <i class="icon dropdown"></i>
               <div class="dropdown vertical menu">
                   <a class="item" href="{% url 'foodpost_list' %}?filter=breakfast">Breakfast </a>

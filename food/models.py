@@ -149,6 +149,24 @@ class Recipe(models.Model):
 
     objects = RecipeManager()
 
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
+
+    @ property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
+
+    def get_absolute_url(self):
+        return reverse("recipe_detail", kwargs={"pk": self.pk})
+
+    class Meta:
+        ordering = ["-timestamp"]
+
     def __str__(self):
         return self.title
 
