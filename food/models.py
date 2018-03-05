@@ -12,74 +12,74 @@ from django.utils.text import slugify
 from django.contrib.auth.models import User
 
 
-class PublishedQuerySet(models.QuerySet):
+class FoodPostQuerySet(models.QuerySet):
     def published(self):
         return self.filter(published=True)
 
     def breakfast(self):
-        return self.filter(breakfast=True)
+        return self.filter(recipe__breakfast=True)
 
     def entree(self):
-        return self.filter(entree=True)
+        return self.filter(recipe__entree=True)
 
     def snack(self):
-        return self.filter(snack=True)
+        return self.filter(recipe__snack=True)
 
     def dessert(self):
-        return self.filter(dessert=True)
+        return self.filter(recipe__dessert=True)
 
-    def foodprep(self):
-        return self.filter(foodprep=True)
+    def food_prep(self):
+        return self.filter(recipe__food_prep=True)
 
     def beverage(self):
-        return self.filter(beverage=True)
+        return self.filter(recipe__beverage=True)
 
     def vegan(self):
-        return self.filter(vegan=True)
+        return self.filter(recipe__vegan=True)
 
     def vegetarian(self):
-        return self.filter(vegetarian=True)
+        return self.filter(recipe__vegetarian=True)
 
-    def glutenfree(self):
-        return self.filter(glutenfree=True)
+    def gluten_free(self):
+        return self.filter(recipe__gluten_free=True)
 
 
 class FoodPostManager(models.Manager):
     """
     Manage for the Comment section
     """
-    def get_published_qs(self):
-        return PublishedQuerySet(self.model, using=self._db)
+    def get_foodpost_qs(self):
+        return FoodPostQuerySet(self.model, using=self._db)
 
     def published(self):
-        return self.get_published_qs().published()
+        return self.get_foodpost_qs().published()
 
     def breakfast(self):
-        return self.get_published_qs().published().breakfast()
+        return self.get_foodpost_qs().published().breakfast()
 
     def entree(self):
-        return self.get_published_qs().published().entree()
+        return self.get_foodpost_qs().published().entree()
 
     def snack(self):
-        return self.get_published_qs().published().snack()
+        return self.get_foodpost_qs().published().snack()
 
     def dessert(self):
-        return self.get_published_qs().published().dessert()
+        return self.get_foodpost_qs().published().dessert()
 
-    def foodprep(self):
-        return self.get_published_qs().published().foodprep()
+    def food_prep(self):
+        return self.get_foodpost_qs().published().food_prep()
 
     def beverage(self):
-        return self.get_published_qs().published().beverage()
+        return self.get_foodpost_qs().published().beverage()
 
     def vegan(self):
-        return self.get_published_qs().published().vegan()
+        return self.get_foodpost_qs().published().vegan()
 
     def vegetarian(self):
-        return self.get_published_qs().published().vegetarian()
+        return self.get_foodpost_qs().published().vegetarian()
 
-    def glutenfree(self):
-        return self.get_published_qs().published().glutenfree()
+    def gluten_free(self):
+        return self.get_published_qs().published().gluten_free()
 
     def filter_by_instance(self, instance):
         content_type = ContentType.objects.get_for_model(instance.__class__)
@@ -147,6 +147,17 @@ class Recipe(models.Model):
     directions = RichTextUploadingField(null=True)
     notes = RichTextUploadingField(null=True)
 
+    breakfast = models.BooleanField(default=False)
+    entree = models.BooleanField(default=False)
+    snack = models.BooleanField(default=False)
+    dessert = models.BooleanField(default=False)
+    savory = models.BooleanField(default=False)
+    vegan = models.BooleanField(default=False)
+    food_prep = models.BooleanField(default=False)
+    healthy = models.BooleanField(default=False)
+    vegetarian = models.BooleanField(default=False)
+    gluten_free = models.BooleanField(default=False)
+
     objects = RecipeManager()
 
     @property
@@ -171,19 +182,6 @@ class Recipe(models.Model):
         return self.title
 
 
-class Ingredient(models.Model):
-    """
-    Ingredient
-    """
-
-    ingredient_name = models.CharField(max_length=40, blank=False, null=False)
-    quantity = models.CharField(max_length=20, blank=False, null=False)
-    recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.ingredient_name
-
-
 class FoodPost(models.Model):
     """
     Class that holds all the entries
@@ -206,22 +204,10 @@ class FoodPost(models.Model):
     updated_date = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
 
-    objects = FoodPostManager()
-
-    # title = models.CharField(max_length=50)
     summary = RichTextUploadingField(blank=True, null=True)
-    foodprep = RichTextUploadingField(blank=True, null=True)
     content = RichTextUploadingField(blank=True, null=True)
 
-    breakfast = models.BooleanField(default=False)
-    entree = models.BooleanField(default=False)
-    snack = models.BooleanField(default=False)
-    dessert = models.BooleanField(default=False)
-    savory = models.BooleanField(default=False)
-    vegan = models.BooleanField(default=False)
-    healthy = models.BooleanField(default=False)
-    vegetarian = models.BooleanField(default=False)
-    gluten_free = models.BooleanField(default=False)
+    objects = FoodPostManager()
 
     @property
     def comments(self):
@@ -246,6 +232,19 @@ class FoodPost(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Ingredient(models.Model):
+    """
+    Ingredient
+    """
+
+    ingredient_name = models.CharField(max_length=40, blank=False, null=False)
+    quantity = models.CharField(max_length=20, blank=False, null=False)
+    recipe = models.ForeignKey(Recipe, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ingredient_name
 
 
 class Image(models.Model):
