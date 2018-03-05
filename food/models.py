@@ -9,6 +9,7 @@ from django.db.models.signals import pre_save
 from django.utils import timezone
 
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 
 class PublishedQuerySet(models.QuerySet):
@@ -125,7 +126,7 @@ class Recipe(models.Model):
     """
     Recipe summary for the
     """
-
+    author = models.ForeignKey(User, default=1)
     slug = models.SlugField(unique=True, null=False, default=None)
     title = models.CharField(max_length=50, default=None)
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -163,30 +164,30 @@ class FoodPost(models.Model):
     Class that holds all the entries
     """
 
+    author = models.ForeignKey(User, default=1)
+    slug = models.SlugField(unique=True, null=False, default=None)
+
     published = models.BooleanField(default=False)
 
     # Get the related recipe of the Food Post
     title = models.CharField(max_length=50)
     recipe = models.OneToOneField(Recipe, null=True, blank=True, on_delete=models.CASCADE)
-    cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
-
-    slug = models.SlugField(unique=True, null=False, default=None)
+    cover_photo = models.ImageField(upload_to=get_upload_path, blank=True, null=True)
 
     timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     objects = FoodPostManager()
 
     # title = models.CharField(max_length=50)
-    summary = RichTextUploadingField(null=True)
-    foodprep = RichTextUploadingField(null=True)
-    content = RichTextUploadingField(null=True)
+    summary = RichTextUploadingField(blank=True, null=True)
+    foodprep = RichTextUploadingField(blank=True, null=True)
+    content = RichTextUploadingField(blank=True, null=True)
 
     breakfast = models.BooleanField(default=False)
     entree = models.BooleanField(default=False)
     snack = models.BooleanField(default=False)
     dessert = models.BooleanField(default=False)
     savory = models.BooleanField(default=False)
-
     vegan = models.BooleanField(default=False)
     healthy = models.BooleanField(default=False)
     vegetarian = models.BooleanField(default=False)
@@ -211,10 +212,10 @@ class FoodPost(models.Model):
         ordering = ["-timestamp"]
 
     def __str__(self):
-        return self.recipe.title
+        return self.title
 
     def __unicode__(self):
-        return self.recipe.title
+        return self.title
 
 
 class Image(models.Model):
