@@ -11,6 +11,9 @@ from django.contrib import messages
 from comments.forms import CommentForm
 from comments.models import Comment
 
+# For Pagination
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def foodpost_list(request):
@@ -36,7 +39,7 @@ def foodpost_list(request):
         elif food_filter == 'dessert':
             food_posts = FoodPost.objects.dessert()
         elif food_filter == 'foodprep':
-            food_posts = FoodPost.objects.foodprep()
+            food_posts = FoodPost.objects.food_prep()
         elif food_filter == 'beverage':
             food_posts = FoodPost.objects.beverage()
         elif food_filter == 'vegan':
@@ -44,14 +47,22 @@ def foodpost_list(request):
         elif food_filter == 'vegetarian':
             food_posts = FoodPost.objects.vegetarian()
         elif food_filter == 'glutenfree':
-            food_posts = FoodPost.objects.glutenfree()
+            food_posts = FoodPost.objects.gluten_free()
         else:
             food_posts = FoodPost.objects.published()
     else:
         food_posts = FoodPost.objects.published()
 
+    paginator = Paginator(food_posts, 3)  # Show 3 contacts per page
+
+    page_number = request.GET.get('page')
+    if page_number is not None:
+        pagnated_food_posts = paginator.page(page_number)
+    else:
+        pagnated_food_posts = paginator.page(1)
+
     context = {
-        'food_posts': food_posts,
+        'food_posts': pagnated_food_posts,
     }
 
     return render(request, 'food/foodpost_list.html', context)
