@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+<!-- This is the recipe-specific section -->
+<div class="row">
+    <div class="eight wide column">
+        <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
+        <h4>
+            Author: {{ recipe.author.first_name }} {{ recipe.author.last_name }} <br>
+            Date Created: {{ recipe.publish_date }}
+        </h4>
+    </div>
+    <div class="eight wide right floated column">
+        <img src="{{ recipe.cover_photo.url }}"  class="ui center large bordered rounded image">
+    </div>
+    <div class="sixteen wide column">
+        <table id="recipe-table" class="ui celled table" cellspacing="10">
+            <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ingredient in recipe.ingredient_set.all %}
+                <tr>
+                    <td>{{ ingredient.ingredient_name }} </td>
+                    <td> {{ ingredient.quantity }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Servings = {{ recipe.servings }}</p>
+        <p>Prep Time = {{ recipe.prep_time }}</p>
+        <p> Cook Time = {{ recipe.cook_time }}</p>
+        <p>Total Time = {{ recipe.total_time }}</p>
+        <div class="extra">
+            <h1> {{ recipe.summary|safe }} </h1>
+        </div>
+    </div>
+</div>

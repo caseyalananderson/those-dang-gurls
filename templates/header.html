@@ -1,60 +1,60 @@
 
-
+<!-- Main Header -->
+<div class="ui inverted vertical center aligned segment">
     <div class="ui tiered menu">
-      <div class="menu">
-          <div class="ui simple dropdown item">
-              <i class="icon food blue"></i>
-              <a href="{% url 'foodpost_list' %}"> Food </a>
-              <i class="icon dropdown"></i>
-              <div class="dropdown vertical menu">
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=breakfast">Breakfast </a>
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=entree"><i class="edit icon"></i>Entree</a>
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=snack"><i class="edit icon"></i>Snack</a>
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=dessert"><i class="edit icon"></i>Desert</a>
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
-                  <a class="item" href="{% url 'foodpost_list' %}?filter=beverages"><i class="edit icon"></i>Beverages</a>
-                  <div class="ui simple dropdown item">
-                      More
-                      <i class="icon dropdown"></i>
-                      <div class="dropdown vertical menu">
-                          <a class="item" href="{% url 'foodpost_list' %}?filter=vegan"><i class="edit icon"></i>Vegan</a>
-                          <a class="item" href="{% url 'foodpost_list' %}?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="ui simple dropdown item">
-              <i class="icon lightning black"></i>
-              <a href="/fitness"> Fitness </a>
-              <i class="icon dropdown"></i>
-              <div class="menu">
-                  <a class="item"><i class="edit icon"></i>Blog</a>
-                  <a class="item"><i class="video icon"></i>Videos</a>
-                  <a class="item"><i class="settings icon"></i>Other Stuff</a>
+        <div class="menu">
+            <div class="ui simple dropdown item">
+                <i class="icon food blue"></i>
+                <a href="{% url 'foodpost_list' %}"> Food </a>
+                <i class="icon dropdown"></i>
+                <div class="dropdown vertical menu">
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=breakfast">Breakfast </a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=entree"><i class="edit icon"></i>Entree</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=snack"><i class="edit icon"></i>Snack</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=dessert"><i class="edit icon"></i>Desert</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=beverages"><i class="edit icon"></i>Beverages</a>
+                    <div class="ui simple dropdown item">
+                        More
+                        <i class="icon dropdown"></i>
+                        <div class="dropdown vertical menu">
+                            <a class="item" href="{% url 'foodpost_list' %}?filter=vegan"><i class="edit icon"></i>Vegan</a>
+                            <a class="item" href="{% url 'foodpost_list' %}?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="ui simple dropdown item">
-              <i class="icon female pink"></i>
+            <div class="ui simple dropdown item">
+                <i class="icon lightning black"></i>
+                <a href="/fitness"> Fitness </a>
+                <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item"><i class="edit icon"></i>Blog</a>
+                    <a class="item"><i class="video icon"></i>Videos</a>
+                    <a class="item"><i class="settings icon"></i>Other Stuff</a>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
+                <i class="icon female pink"></i>
                 Beauty
-              <i class="icon dropdown"></i>
-              <div class="menu">
-                  <a class="item"><i class="edit icon"></i>Blog</a>
-                  <a class="item"><i class="video icon"></i>Videos</a>
-                  <a class="item"><i class="settings icon"></i>Tutorials</a>
+                <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item"><i class="edit icon"></i>Blog</a>
+                    <a class="item"><i class="video icon"></i>Videos</a>
+                    <a class="item"><i class="settings icon"></i>Tutorials</a>
+                </div>
             </div>
-          </div>
-
-          <div class="ui simple dropdown item">
-            Check us Out!
-              <i class="icon dropdown"></i>
-              <div class="menu">
-                  <a class="item" href="https://www.instagram.com/dangelosisters/"><i class="instagram icon"></i>Instagram</a>
-                  <a class="item" href="https://www.facebook.com/casey.alan.anderson"><i class="facebook icon"></i>Facebook</a>
-                  <a class="item" href=https://www.youtube.com/channel/UChd9goWhGKhriO9CjRUSucw?view_as=subscriber><i class="youtube icon"></i>Youtube</a>
+            <div class="ui simple dropdown item">
+                Check us Out!
+                <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item" href="https://www.instagram.com/dangelosisters/"><i class="instagram icon"></i>Instagram</a>
+                    <a class="item" href="https://www.facebook.com/casey.alan.anderson"><i class="facebook icon"></i>Facebook</a>
+                    <a class="item" href=https://www.youtube.com/channel/UChd9goWhGKhriO9CjRUSucw?view_as=subscriber><i class="youtube icon"></i>Youtube</a>
+                </div>
             </div>
-          </div>
-          <div class="right menu">
-              <div class="ui simple dropdown item">
+            <div class="right menu">
+                <div class="ui simple dropdown item">
                   {% if user.username %}
                   {{ user.username }}
                   <i class="icon dropdown"></i>
@@ -69,37 +69,17 @@
                       <a class="item" href="/signup/"><i class="globe icon"></i>Signup</a>
                   </div>
                   {% endif %}
-              </div>
-          </div>
-      </div>
-      <div class="sub item">
-        <div class="ui icon input">
-          <form action="/search/" style="margin: 0">
-                <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
-                <button id="search_submit" type="submit" >Submit</button>
-            </form>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="sub item">
+            <div class="ui icon input">
+                <form action="/search/" style="margin: 0">
+                    <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+                    <button id="search_submit" type="submit" >Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-<!--
-    <script>
-    $('.ui.pointing.menu')
-        .on('click', '.item', function() {
-          if(!$(this).hasClass('dropdown')) {
-            $(this)
-              .addClass('active')
-              .siblings('.item')
-                .removeClass('active');
-          }
-        });
-
-     </script>
-
-<script>
-    $('.ui.dropdown')
-    .dropdown();
-
-</script>
--->
+</div>
 

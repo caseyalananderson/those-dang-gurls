@@ -161,9 +161,14 @@
     </head>
     <body>
 
-    {% block content %}
+    <!-- Persistent Header -->
+    {% include "header.html" %}
 
+    {% block content %}
     {% endblock %}
+
+    <!-- Persistent Footer -->
+    {% include "footer.html" %}
 
     </body>
 </html>

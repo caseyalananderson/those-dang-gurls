@@ -1,0 +1,41 @@
+{% load staticfiles %}
+
+<div class="eight wide column">
+    <h1><a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <h4>
+        Author: {{ post.author.first_name }} {{ post.author.last_name }} | Date Created: {{ post.publish_date }}
+    </h4>
+    <div class="extra">
+        {% if post.recipe.vegan %}
+        <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
+        {% endif %}
+        {% if post.recipe.healthy %}
+        <span data-tooltip="Healthy">
+            <img src="{% static 'icons/healthy.jpg' %}">
+        </span>
+        {% endif %}
+        {% if post.recipe.vegetarian %}
+         <span data-tooltip="Vegetarian">
+            <img src="{% static 'icons/vegetarian.jpg' %}">
+        </span>
+        {% endif %}
+        {% if post.recipe.gluten_free %}
+        <span data-tooltip="Gluten Free">
+            <img src="{% static 'icons/gluten_free.jpg' %}">
+        </span>
+        {% endif %}
+    </div>
+
+    {{ post.summary|safe }}
+
+</div>
+<div class="six wide right floated column">
+            <img src="{{ post.cover_photo.url }}"  class="ui center large bordered rounded image">
+</div>
+
+<div class="row">
+    <div class="sixteen wide column">
+        {{ post.content|safe }}
+    </div>
+</div>
+

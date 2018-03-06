@@ -1,143 +1,30 @@
 {% extends 'base.html' %}
-
 {% load staticfiles %}
-
 {% block content %}
-
-<!-- Following Menu -->
-{% include "following_menu.html" %}
-{% include "sidebar_menu.html" %}
-
 
 <!-- Page Contents -->
 <div class="pusher">
-    <!-- Header -->
-    <div class="ui inverted vertical center aligned segment">
-        {% include "header.html" %}
-    </div>
-    <div class="ui vertical stripe segment">
+   <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
-            <div class="row">
-                <div class="eight wide column">
-                    <h1><a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                    <h4>
-                        Author: {{ post.author.first_name }} {{ post.author.last_name }} | Date Created: {{ post.publish_date }}
-                    </h4>
-                    <div class="extra">
-                        {% if post.vegan %}
-                        <img src="{% static 'icons/vegan.jpg' %}" data-content="Vegan">
-                        {% endif %}
-                        {% if post.healthy %}
-                        <span data-tooltip="Healthy">
-                            <img src="{% static 'icons/healthy.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.vegetarian %}
-                         <span data-tooltip="Vegetarian">
-                            <img src="{% static 'icons/vegetarian.jpg' %}">
-                        </span>
-                        {% endif %}
-                        {% if post.gluten_free %}
-                        <span data-tooltip="Gluten Free">
-                            <img src="{% static 'icons/gluten_free.jpg' %}">
-                        </span>
-                        {% endif %}
-                    </div>
-                    
-                    {{ post.summary|safe }}
 
-                </div>
-                <div class="six wide right floated column">
-                            <img src="{{ post.recipe.cover_photo.url }}"  class="ui center large bordered rounded image">
-                </div>
-
-            </div>
+            <!-- Recipe Section goes in here -->
             <div class="row">
-                <div class="sixteen wide column">
-                    {{ post.content|safe }}
-                </div>
+                {% include "food/foodpost_section.html" %}
             </div>
 
             {% if post.recipe %}
-
-            <div class="sixteen wide column centered grid">
-                <h1>Recipe </h1>
-                <h1><a href="{% url 'recipe_detail' pk=post.recipe.pk %}">{{ post.recipe.title }}</a></h1>
-                <h4>
-                    Author: {{ post.recipe.author.first_name }} {{ post.recipe.author.last_name }} <br>
-
-                    Date Created: {{ post.recipe.publish_date }}
-                </h4>
-                <table id="recipe-table" class="ui celled table" cellspacing="10">
-                    <thead>
-                        <tr>
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for ingredient in post.recipe.ingredient_set.all %}
-                        <tr>
-                            <td>{{ ingredient.ingredient_name }} </td>
-                            <td> {{ ingredient.quantity }} </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <p> Servings = {{ post.recipe.servings }}</p>
-                <p>Prep Time = {{ post.recipe.prep_time }}</p>
-
-                <p> Cook Time = {{ post.recipe.cook_time }}</p>
-
-                 <p>Total Time = {{ post.recipe.total_time }}</p>
-
-                <div class="extra">
-                    <h1> {{ post.recipe.summary|safe }} </h1>
-                </div>
+            <div class="row">
+                {% include "food/recipe_section.html" %}
             </div>
             {% endif %}
 
-
-            <div class="sixteen wide column">
-                <h3 class="ui comments dividing header">Comments</h3>
-                <div class="comment">
-                    <p class="lead">Comments </p>
-                    <form method="POST" action="."> {% csrf_token %}
-                        {{ comment_form }}
-                        <p> </p>
-                        <button type="submit" class="ui submit button" value="Post Comment">Post Comment</button>
-                    </form>
-                </div>
-                {% for comment in comments %}
-                <blockquote>
-                    <p>{{ comment.content }}</p>
-                    <footer>
-                        via {{ comment.user }} | {{ comment.timestamp|timesince }} ago | {% if comment.children.count > 0 %}
-                        {{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} | {% endif %}
-                        <a class="comment-reply-btn" href="#">Reply</a>
-                    </footer>
-                    <div class="comment-reply" style="display:none">
-                        {% for child_comment in comment.children %}
-                        <blockquote>
-                            <p>{{ child_comment.content }}</p>
-                            <footer> via {{ child_comment.user }} | {{ child_comment.timestamp|timesince }} ago</footer>
-                        </blockquote>
-                        {% endfor %}
-                        <form method="POST" action="."> {% csrf_token %}
-                            {{ comment_form }}
-                            <p> </p>
-                            <input type="hidden" name="parent_id" value='{{ comment.id }}'>
-                            <button type="submit" class="ui submit button" value="Reply">Reply</button>
-                        </form>
-                    </div>
-                </blockquote>
+            <!-- Comment Section -->
+            <div class="row">
+                {% include "comments/comment_section.html" %}
             </div>
-        {% endfor %}
+
         </div>
     </div>
 </div>
-
-
-{% include "footer.html" %}
 
 {% endblock %}

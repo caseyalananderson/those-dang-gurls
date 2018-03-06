@@ -1,23 +1,10 @@
 {% extends 'base.html' %}
 {% load columns %}
-
 {% load static from staticfiles %}
-
 {% block content %}
-
-<!-- Add the following and sidebar menu -->
-{% include "following_menu.html" %}
-{% include "sidebar_menu.html" %}
-
 
 <!-- Page Contents -->
 <div class="pusher">
-
-    <!-- Header -->
-    <div class="ui inverted vertical center aligned segment">
-     {% include "header.html" %}
-    </div>
-
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             {% if food_posts %}
@@ -94,8 +81,4 @@
         </div>
     </div>
 </div>
-
-
-{% include "footer.html" %}
-
 {% endblock %}
