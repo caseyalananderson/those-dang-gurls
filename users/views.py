@@ -7,9 +7,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, UserModel
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
-from django.http import HttpResponseRedirect
-from django.contrib.auth.views import login as auth_views_login
+from .forms import SignUpForm, LoginForm
 
 
 def user_login(request):
@@ -18,19 +16,13 @@ def user_login(request):
     :param request:
     :return:
     """
-    context = {
-        'auth_views_login': auth_views_login,
-    }
-
-    if request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('/')
-    return render(request, 'users/user_login.html', context)
+    form = LoginForm(request.POST or None)
+    if request.POST and form.is_valid():
+        user = form.login(request)
+        if user:
+            login(request, user)
+            return redirect("/")
+    return render(request, 'users/user_login.html', {'form': form})
 
 
 def user_signup(request):

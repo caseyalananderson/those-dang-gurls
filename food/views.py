@@ -24,8 +24,6 @@ def foodpost_list(request):
     :return:
     """
 
-    print(request.user.username)
-
     # get the name of the string called "filter"
     food_filter = str(request.GET.get('filter'))
 
@@ -140,8 +138,6 @@ def recipe_list(request):
     :param request:
     :return:
     """
-
-    print(request.user.username)
 
     # get the name of the string called "filter"
     food_filter = str(request.GET.get('filter'))
