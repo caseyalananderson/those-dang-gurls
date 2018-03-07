@@ -4,9 +4,8 @@ from comments.models import Comment
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import reverse
-from .utils import unique_slug_generator
+from utils.utils import unique_slug_generator
 from django.db.models.signals import pre_save
-from django.utils import timezone
 
 from django.utils.text import slugify
 from django.contrib.auth.models import User

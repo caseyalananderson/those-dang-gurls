@@ -1,9 +1,4 @@
 from django.utils.text import slugify
-
-'''
-random_string_generator is located here:
-http://joincfe.com/blog/random-string-generator-in-python/
-'''
 import random
 import string
 

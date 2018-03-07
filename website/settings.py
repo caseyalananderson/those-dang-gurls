@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # main apps
     'index',
     'food',
+    'beauty',
     'videos',
     'search',
     'comments',

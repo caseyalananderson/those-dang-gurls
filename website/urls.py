@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('index.urls')),
     url(r'^food/', include('food.urls')),
+    url(r'^beauty/', include('beauty.urls')),
 
     url(r'^videos/', include('videos.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

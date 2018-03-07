@@ -1,30 +1,72 @@
 {% extends 'base.html' %}
-
 {% load static from staticfiles %}
-
 {% block content %}
-
-<!-- Following Menu -->
-{% include "following_menu.html" %}
-<!-- Sidebar Menu -->
-{% include "sidebar_menu.html" %}
-
+{% load partition %}
 
 <!-- Page Contents -->
-<div class="pusher">
+<div class="pusher site">
+    {% include "header.html" %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            {% if search_qs %}
+            <div class="row">
+                <table>
+                    {% for row in search_qs|columns:3 %}
+                    <tr>
+                        {% for search_element in row %}
+                        <td align="center">
+                          <h5 align="center">
+                            <a href="{% url 'foodpost_detail' pk=search_element.pk %}">
+                              {{ search_element.title }}
+                            </a>
+                            </h5>
+                            {% if search_element.cover_photo.url %}
+                            <img class="ui center floated image" src="{{ search_element.cover_photo.url }}"
+                                 border=3 height=200 width=300>
+                            {% else %}
+                            <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
+                                 border=3 height=200 width=300>
+                            {% endif %}
+                            <h6 align="center">
+                                Author: {{ search_element.author.first_name }} {{ search_element.author.last_name }} <br>
+                                Date Created: {{ search_element.publish_date }}
+                            </h6>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
 
-  <!-- Header -->
-  <div class="ui inverted vertical center aligned segment">
-     {% include "header.html" %}
-  </div>
+            <!-- Pagination -->
 
-    {% for recipe in qs %}
-    <h1><a href="{% url 'foodpost_detail' pk=recipe.pk %}">{{ recipe.title }}</a></h1>
-    {% endfor %}
+            </div>
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h3 class="ui centered">
+                        {% if search_qs.has_previous %}
+                        <a  href="?page=1">&laquo; First   |   </a>
+                        <a href="?page={{ search_qs.previous_page_number }}"> Previous  |   </a>
+                        {% endif %}
 
+                        {% if search_qs.has_next %}
+                        <a href="?page={{ search_qs.next_page_number }}">    Next | </a>
+                        <a href="?page={{ search_qs.paginator.num_pages }}">    Last &raquo;</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ search_qs.number }} of {{ search_qs.paginator.num_pages }}
+                        </span>
+                    </h3>
+                </div>
+            {% else %}
+            <div class="row">
+                <h2>Nothing matched your search</h2>
+                <p> We are a new and upcoming website and are trying to
+                    populate the database as fast as we can with entries.
+                    Please be patient and get back to us soon!
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-
-{% include "footer.html" %}
-
 {% endblock %}

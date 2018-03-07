@@ -4,10 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from food.models import FoodPost, Recipe
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
-from django.views.generic import ListView
-from django.http import HttpResponse
-
-# Create your views here.
+from django.core.paginator import Paginator
 
 
 def search(request):
@@ -28,13 +25,18 @@ def search(request):
         qs = qs.annotate(search=vectors).filter(search=query)
         qs = qs.annotate(rank=SearchRank(vectors, query)).order_by('-rank')
 
-    #CAA TODO: SWTICH TO POSTGRES, NOT SQLLITE!!!
+    paginator = Paginator(qs, 6)  # Show 3 contacts per page
+
+    page_number = request.GET.get('page')
+    if page_number is not None:
+        pagnated_search_qs = paginator.page(page_number)
+    else:
+        pagnated_search_qs = paginator.page(1)
 
     context = {
-        'qs': qs,
+        'search_qs': pagnated_search_qs,
     }
 
     print(context)
 
-    # return HttpResponse(this_str)
     return render(request, 'search/search_list.html', context)
