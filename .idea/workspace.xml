@@ -5,13 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2dde4bb4-7b91-4379-a737-28ff5c08de12" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/food/templates/food/foodpost_list.html" afterPath="$PROJECT_DIR$/food/templates/food/foodpost_list.html" />
       <change beforePath="$PROJECT_DIR$/food/views.py" afterPath="$PROJECT_DIR$/food/views.py" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" afterPath="$PROJECT_DIR$/templates/registration/login.html" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" afterPath="$PROJECT_DIR$/users/forms.py" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/user_login.html" afterPath="$PROJECT_DIR$/users/templates/users/user_login.html" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/user_signup.html" afterPath="$PROJECT_DIR$/users/templates/users/user_signup.html" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" afterPath="$PROJECT_DIR$/users/views.py" />
-      <change beforePath="$PROJECT_DIR$/website/urls.py" afterPath="$PROJECT_DIR$/website/urls.py" />
+      <change beforePath="$PROJECT_DIR$/static/css/base.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/food.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/lightbox.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/pets.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/404_dog.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/apoiase_white.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/background.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/close.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/facebook.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/featuredbg.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/kdmeubicho_endereco.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/kdmeubicho_form.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/kdmeubicho_nome.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/loading.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/next.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/prev.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/sponsors/digitalocean.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/img/twitter.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/documentready.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/food.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery-2.1.1.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/lightbox.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/matchMedia.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/pets.js" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,77 +47,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/views.py">
+        <entry file="file://$PROJECT_DIR$/food/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1062">
+              <caret line="59" column="47" lean-forward="false" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="foodpost_list.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/food/templates/food/foodpost_list.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_login.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/users/templates/users/user_login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_signup.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/templates/users/user_signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#p#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index/templates/index/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="48" />
+              <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="25" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -177,21 +148,21 @@
         <option value="$PROJECT_DIR$/templates/sidebar_menu.html" />
         <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/food/templatetags/partition.py" />
-        <option value="$PROJECT_DIR$/food/templates/food/foodpost_list.html" />
-        <option value="$PROJECT_DIR$/food/views.py" />
         <option value="$PROJECT_DIR$/users/templates/users/user_signup.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/users/views.py" />
         <option value="$PROJECT_DIR$/website/urls.py" />
         <option value="$PROJECT_DIR$/users/forms.py" />
         <option value="$PROJECT_DIR$/users/templates/users/user_login.html" />
+        <option value="$PROJECT_DIR$/food/views.py" />
+        <option value="$PROJECT_DIR$/food/templates/food/foodpost_list.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="131" />
+    <option name="x" value="114" />
     <option name="y" value="74" />
-    <option name="width" value="1206" />
+    <option name="width" value="1223" />
     <option name="height" value="681" />
   </component>
   <component name="ProjectView">
@@ -220,30 +191,13 @@
             <path>
               <item name="those-dang-gurls" type="b2602c69:ProjectViewProjectNode" />
               <item name="those-dang-gurls" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="those-dang-gurls" type="b2602c69:ProjectViewProjectNode" />
               <item name="those-dang-gurls" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="those-dang-gurls" type="b2602c69:ProjectViewProjectNode" />
-              <item name="those-dang-gurls" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="those-dang-gurls" type="b2602c69:ProjectViewProjectNode" />
-              <item name="those-dang-gurls" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="those-dang-gurls" type="b2602c69:ProjectViewProjectNode" />
-              <item name="those-dang-gurls" type="462c0819:PsiDirectoryNode" />
-              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -300,10 +254,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="131" y="74" width="1206" height="681" extended-state="0" />
+    <frame x="114" y="74" width="1223" height="681" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23300166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.260834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -598,32 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/food/templates/food/foodpost_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-700">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index/templates/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/food/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3116">
-          <caret line="175" column="18" lean-forward="false" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -637,6 +565,52 @@
         <state relative-caret-position="2466">
           <caret line="137" column="8" lean-forward="false" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/templates/users/user_login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="48" lean-forward="true" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/templates/users/user_signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#p#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index/templates/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#24#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#63#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -656,40 +630,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/users/views.py">
+    <entry file="file://$PROJECT_DIR$/food/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="59" column="47" lean-forward="false" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/food/templates/food/foodpost_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/templates/users/user_signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/templates/users/user_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <caret line="24" column="27" lean-forward="true" selection-start-line="24" selection-start-column="27" selection-end-line="25" selection-end-column="63" />
           <folding />
         </state>
       </provider>

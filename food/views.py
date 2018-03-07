@@ -51,7 +51,7 @@ def foodpost_list(request):
     else:
         food_posts = FoodPost.objects.published()
 
-    paginator = Paginator(food_posts, 3)  # Show 3 contacts per page
+    paginator = Paginator(food_posts, 6)  # Show 3 contacts per page
 
     page_number = request.GET.get('page')
     if page_number is not None:
@@ -140,31 +140,31 @@ def recipe_list(request):
     """
 
     # get the name of the string called "filter"
-    food_filter = str(request.GET.get('filter'))
+    recipe_filter = str(request.GET.get('filter'))
 
-    if food_filter:  # Select the matched ones that match the filter
-        if food_filter == 'breakfast':
-            food_posts = FoodPost.objects.breakfast()
-        elif food_filter == 'entree':
-            food_posts = FoodPost.objects.entree()
-        elif food_filter == 'snack':
-            food_posts = FoodPost.objects.snack()
-        elif food_filter == 'dessert':
-            food_posts = FoodPost.objects.dessert()
-        elif food_filter == 'foodprep':
-            food_posts = FoodPost.objects.foodprep()
-        elif food_filter == 'beverage':
-            food_posts = FoodPost.objects.beverage()
-        elif food_filter == 'vegan':
-            food_posts = FoodPost.objects.vegan()
-        elif food_filter == 'vegetarian':
-            food_posts = FoodPost.objects.vegetarian()
-        elif food_filter == 'glutenfree':
-            food_posts = FoodPost.objects.glutenfree()
+    if recipe_filter:  # Select the matched ones that match the filter
+        if recipe_filter == 'breakfast':
+            food_posts = Recipe.objects.breakfast()
+        elif recipe_filter == 'entree':
+            food_posts = Recipe.objects.entree()
+        elif recipe_filter == 'snack':
+            food_posts = Recipe.objects.snack()
+        elif recipe_filter == 'dessert':
+            food_posts = Recipe.objects.dessert()
+        elif recipe_filter == 'foodprep':
+            food_posts = Recipe.objects.foodprep()
+        elif recipe_filter == 'beverage':
+            food_posts = Recipe.objects.beverage()
+        elif recipe_filter == 'vegan':
+            food_posts = Recipe.objects.vegan()
+        elif recipe_filter == 'vegetarian':
+            food_posts = Recipe.objects.vegetarian()
+        elif recipe_filter == 'glutenfree':
+            food_posts = Recipe.objects.glutenfree()
         else:
-            food_posts = FoodPost.objects.published()
+            food_posts = Recipe.objects.published()
     else:
-        food_posts = FoodPost.objects.published()
+        food_posts = Recipe.objects.published()
 
     context = {
         'food_posts': food_posts,
