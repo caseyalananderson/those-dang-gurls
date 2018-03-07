@@ -21,9 +21,13 @@
                                     {{ post.title }}
                                 </a>
                             </h5>
-                            <img class
+                            {% if post.cover_photo.url %}
                             <img class="ui center floated image" src="{{ post.cover_photo.url }}"
                                  border=3 height=200 width=300>
+                            {% else %}
+                            <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
+                                 border=3 height=200 width=300>
+                            {% endif %}
                             <h6 align="center">
                                 Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
                                 Date Created: {{ post.publish_date }}
