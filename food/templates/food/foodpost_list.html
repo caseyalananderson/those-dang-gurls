@@ -1,77 +1,61 @@
 {% extends 'base.html' %}
-{% load columns %}
 {% load static from staticfiles %}
 {% block content %}
+{% load partition %}
 
 <!-- Page Contents -->
-<div class="pusher">
+<div class="pusher site">
+    {% include "header.html" %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             {% if food_posts %}
             <div class="row">
-                {% for col in food_posts|columns:4 %}
-                <div class="col-md-3">
-                    {% for post in col %}
-                    <div class="ui centered item">
-                        <h1 align="center">
-                            <a href="{% url 'foodpost_detail' pk=post.pk %}">{{ post.title }}</a>
-                        </h1>
-                        {% if post.cover_photo %}
-                        <img class="ui center floated image" src="{{ post.cover_photo.url }}"
-                             height="300" width="400">
-                        {% endif %}
-                        <h4 align="center">
-                            Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
-                            Date Created: {{ post.publish_date }}
-                        </h4>
-                        <div class="extra">
-                            {% if post.vegan %}
-                            <span data-tooltip="Vegan">
-                                <img src="{% static 'icons/vegan.jpg' %}">
-                            </span>
-                            {% endif %}
-                            {% if post.healthy %}
-                            <span data-tooltip="Healthy">
-                                <img src="{% static 'icons/healthy.jpg' %}">
-                            </span>
-                            {% endif %}
-                            {% if post.vegetarian %}
-                             <span data-tooltip="Vegetarian">
-                                <img src="{% static 'icons/vegetarian.jpg' %}">
-                            </span>
-                            {% endif %}
-                            {% if post.gluten_free %}
-                            <span data-tooltip="Gluten Free">
-                                <img src="{% static 'icons/gluten_free.jpg' %}">
-                            </span>
-                            {% endif %}
-                        </div>
-                    </div>
+
+                <table>
+                    {% for row in food_posts|columns:3 %}
+                    <tr>
+                        {% for post in row %}
+                        <td align="center">
+                            <h5 align="center">
+                                <a href="{% url 'foodpost_detail' pk=post.pk %}">
+                                    {{ post.title }} cogito ;alksj f;lkja fergo lipsjm
+                                </a>
+                            </h5>
+                            <img class="ui center floated image" src="{{ post.cover_photo.url }}"
+                                 border=3 height=200 width=300>
+                            <h6 align="center">
+                                Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                                Date Created: {{ post.publish_date }}
+                            </h6>
+                        </td>
+                        {% endfor %}
+                    </tr>
                     {% endfor %}
-                </div><!-- /col-md-4 -->
-                {% endfor %}
-            </div><!-- /row -->
+                </table>
 
             <!-- Pagination -->
-            <div class="sixteen wide column">
-                <h4 class="ui centered step-links">
-                    {% if food_posts.has_previous %}
-                    <a href="?page=1">&laquo; First | </a>
-                    <a href="?page={{ food_posts.previous_page_number }}"> Previous </a>
-                    {% endif %}
 
-                    {% if food_posts.has_next %}
-                    <a href="?page={{ food_posts.next_page_number }}"> Next | </a>
-                    <a href="?page={{ food_posts.paginator.num_pages }}"> Last &raquo;</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ food_posts.number }} of {{ food_posts.paginator.num_pages }}
-                    </span>
-                </h4>
             </div>
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h3 class="ui centered">
+                        {% if food_posts.has_previous %}
+                        <a  href="?page=1">&laquo; First   |   </a>
+                        <a href="?page={{ food_posts.previous_page_number }}"> Previous  |   </a>
+                        {% endif %}
+
+                        {% if food_posts.has_next %}
+                        <a href="?page={{ food_posts.next_page_number }}">    Next | </a>
+                        <a href="?page={{ food_posts.paginator.num_pages }}">    Last &raquo;</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ food_posts.number }} of {{ food_posts.paginator.num_pages }}
+                        </span>
+                    </h3>
+                </div>
             {% else %}
             <div class="row">
-                <h2>Nothing matched!</h2>
+                <h2>Nothing matched your search</h2>
                 <p> We are a new and upcoming website and are trying to
                     populate the database as fast as we can with entries.
                     Please be patient and get back to us soon!

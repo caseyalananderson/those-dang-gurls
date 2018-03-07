@@ -118,6 +118,29 @@
           }
         }
 
+        .break-word {
+            width: 10em;
+            word-wrap:break-word;
+        }
+
+        .Site {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        }
+
+        .Site-content {
+        flex: 1;
+        }
+
+        $('.ui.labeled.icon.sidebar')
+        sidebar('toggle')
+        ;
+
+        // .pusher {
+        //     width: calc(100% - 260px); /*260px is the sidebar width*/
+        // }
+
         </style>
         <script src="{% static 'semantic/dist/components/visibility.js' %}"></script>
         <script src="{% static 'semantic/dist/components/sidebar.js' %}"></script>
@@ -161,14 +184,9 @@
     </head>
     <body>
 
-    <!-- Persistent Header -->
-    {% include "header.html" %}
-
     {% block content %}
     {% endblock %}
 
-    <!-- Persistent Footer -->
-    {% include "footer.html" %}
 
     </body>
 </html>

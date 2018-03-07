@@ -1,5 +1,6 @@
-
+{% load staticfiles %}
 <!-- Main Header -->
+<img src="{% static 'icons/thosedanggirls.jpg' %}" height="100" width="800">
 <div class="ui inverted vertical center aligned segment">
     <div class="ui tiered menu">
         <div class="menu">
@@ -45,36 +46,34 @@
                 </div>
             </div>
             <div class="ui simple dropdown item">
-                Check us Out!
+                Social
                 <i class="icon dropdown"></i>
                 <div class="menu">
-                    <a class="item" href="https://www.instagram.com/dangelosisters/"><i class="instagram icon"></i>Instagram</a>
+                    <a class="item" href="https://www.instagram.com/thosedanggirls/"><i class="instagram icon"></i>Instagram</a>
                     <a class="item" href="https://www.facebook.com/casey.alan.anderson"><i class="facebook icon"></i>Facebook</a>
                     <a class="item" href=https://www.youtube.com/channel/UChd9goWhGKhriO9CjRUSucw?view_as=subscriber><i class="youtube icon"></i>Youtube</a>
                 </div>
             </div>
-            <div class="right menu">
-                <div class="ui simple dropdown item">
-                  {% if user.username %}
-                  {{ user.username }}
-                  <i class="icon dropdown"></i>
-                  <div class="menu">
-                      <a class="item" href="/logout/"><i class="edit icon"></i>Logout</a>
-                  </div>
-                  {% else %}
-                  Login
-                  <i class="icon dropdown"></i>
-                  <div class="menu">
-                      <a class="item" href="/login/"><i class="edit icon"></i>Login</a>
-                      <a class="item" href="/signup/"><i class="globe icon"></i>Signup</a>
-                  </div>
-                  {% endif %}
+            <div class="ui simple dropdown item">
+                {% if user.username %}
+                {{ user.username }}
+                <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item" href="/logout/"><i class="edit icon"></i>Logout</a>
                 </div>
+                {% else %}
+                Login
+                <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item" href="/login/"><i class="edit icon"></i>Login</a>
+                    <a class="item" href="/signup/"><i class="globe icon"></i>Signup</a>
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="sub item">
             <div class="ui icon input">
-                <form action="/search/" style="margin: 0">
+                <form action="/search/" style="margin: 10">
                     <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
                     <button id="search_submit" type="submit" >Submit</button>
                 </form>
