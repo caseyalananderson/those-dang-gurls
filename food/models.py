@@ -211,6 +211,8 @@ class FoodPost(models.Model):
     youtube_link = models.URLField(max_length=100, blank=True, null=True)
     youtube_embed_link = models.URLField(max_length=100, blank=True, null=True)
 
+    post_type = models.CharField(max_length=20, null=True, blank=True)
+
     objects = FoodPostManager()
 
     @property
@@ -265,7 +267,9 @@ class Image(models.Model):
 
 @receiver(post_save, sender=FoodPost)
 def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
-    # without this check the save() below causes infinite post_save signals
+    if instance.post_type is None:
+        instance.post_type = "food"
+        instance.save()
     if instance.youtube_link and instance.youtube_embed_link is None:
             instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
             instance.save()

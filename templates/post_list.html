@@ -8,10 +8,10 @@
     {% include "header.html" %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
-            {% if travel_posts %}
+            {% if posts %}
             <div class="row">
                 <table>
-                    {% for row in travel_posts|columns:3 %}
+                    {% for row in posts|columns:3 %}
                     <tr>
                         {% for post in row %}
                         <td align="center">
@@ -46,17 +46,17 @@
             <div class="row">
                 <div class="sixteen wide column">
                     <h3 class="ui centered">
-                        {% if travel_posts.has_previous %}
+                        {% if posts.has_previous %}
                         <a  href="?page=1">&laquo; First   |   </a>
-                        <a href="?page={{ travel_posts.previous_page_number }}"> Previous  |   </a>
+                        <a href="?page={{ posts.previous_page_number }}"> Previous  |   </a>
                         {% endif %}
 
-                        {% if travel_posts.has_next %}
-                        <a href="?page={{ travel_posts.next_page_number }}">    Next | </a>
-                        <a href="?page={{ travel_posts.paginator.num_pages }}">    Last &raquo;</a>
+                        {% if posts.has_next %}
+                        <a href="?page={{ posts.next_page_number }}">    Next | </a>
+                        <a href="?page={{ posts.paginator.num_pages }}">    Last &raquo;</a>
                         {% endif %}
                         <span class="current">
-                            Page {{ travel_posts.number }} of {{ travel_posts.paginator.num_pages }}
+                            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
                         </span>
                     </h3>
                 </div>
