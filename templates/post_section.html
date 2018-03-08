@@ -2,7 +2,19 @@
 
 <div class="eight wide column">
     <h1>
-        <a href="{% url 'travelpost_detail' pk=post.pk %}">{{ post.title }}</a>
+        {% if post.post_type == 'travel' %}
+        <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'food' %}
+        <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'beauty' %}
+        <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'fitness' %}
+        <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+        {% else %}
+        <a href="." >
+        {% endif %}
+            {{ post.title }}
+        </a>
     </h1>
     <h4>
         Author: {{ post.author.first_name }} {{ post.author.last_name }} | Date Created: {{ post.publish_date }}
