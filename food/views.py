@@ -60,10 +60,10 @@ def foodpost_list(request):
         pagnated_food_posts = paginator.page(1)
 
     context = {
-        'food_posts': pagnated_food_posts,
+        'posts': pagnated_food_posts,
     }
 
-    return render(request, 'food/foodpost_list.html', context)
+    return render(request, 'post_list.html', context)
 
 
 # Create your views here.
@@ -127,50 +127,7 @@ def foodpost_detail(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'food/foodpost_detail.html', context)
-
-
-# Create your views here.
-def recipe_list(request):
-    """
-    Main index that displays recipe lists.
-    Grabs "filter" from cookies in order to filter the query of the database
-    :param request:
-    :return:
-    """
-
-    # get the name of the string called "filter"
-    recipe_filter = str(request.GET.get('filter'))
-
-    if recipe_filter:  # Select the matched ones that match the filter
-        if recipe_filter == 'breakfast':
-            food_posts = Recipe.objects.breakfast()
-        elif recipe_filter == 'entree':
-            food_posts = Recipe.objects.entree()
-        elif recipe_filter == 'snack':
-            food_posts = Recipe.objects.snack()
-        elif recipe_filter == 'dessert':
-            food_posts = Recipe.objects.dessert()
-        elif recipe_filter == 'foodprep':
-            food_posts = Recipe.objects.foodprep()
-        elif recipe_filter == 'beverage':
-            food_posts = Recipe.objects.beverage()
-        elif recipe_filter == 'vegan':
-            food_posts = Recipe.objects.vegan()
-        elif recipe_filter == 'vegetarian':
-            food_posts = Recipe.objects.vegetarian()
-        elif recipe_filter == 'glutenfree':
-            food_posts = Recipe.objects.glutenfree()
-        else:
-            food_posts = Recipe.objects.published()
-    else:
-        food_posts = Recipe.objects.published()
-
-    context = {
-        'food_posts': food_posts,
-    }
-
-    return render(request, 'food/foodpost_list.html', context)
+    return render(request, 'post_detail.html', context)
 
 
 # Create your views here.
@@ -233,5 +190,5 @@ def recipe_detail(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'food/recipe_detail.html', context)
+    return render(request, 'recipe_detail.html', context)
 

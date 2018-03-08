@@ -131,11 +131,12 @@ class Image(models.Model):
 
 @receiver(post_save, sender=BeautyPost)
 def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
-    # without this check the save() below causes infinite post_save signals
+    if instance.post_type is None:
+        instance.post_type = "beauty"
+        instance.save()
     if instance.youtube_link and instance.youtube_embed_link is None:
-            instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
-            instance.post_type = "beauty"
-            instance.save()
+        instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
+        instance.save()
 
 
 def create_youtube_embed_link(youtube_link):

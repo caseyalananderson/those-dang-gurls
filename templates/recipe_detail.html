@@ -2,26 +2,19 @@
 {% load staticfiles %}
 {% block content %}
 
-<!-- Page Contents -->
 <div class="pusher">
     {% include "header.html" %}
-   <div class="ui vertical stripe segment">
+   <div class="ui small vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
 
             <!-- Recipe Section goes in here -->
             <div class="row">
-                {% include "food/foodpost_section.html" %}
+                {% include "recipe_section.html" %}
             </div>
-
-            {% if post.recipe %}
-            <div class="row">
-                {% include "food/recipe_section.html" %}
-            </div>
-            {% endif %}
 
             <!-- Comment Section -->
             <div class="row">
-                {% include "comments/comment_section.html" %}
+                {% include "comment_section.html" %}
             </div>
 
         </div>

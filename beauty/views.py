@@ -35,10 +35,10 @@ def beautypost_list(request):
         pagnated_beauty_posts = paginator.page(1)
 
     context = {
-        'beauty_posts': pagnated_beauty_posts,
+        'posts': pagnated_beauty_posts,
     }
 
-    return render(request, 'beauty/beautypost_list.html', context)
+    return render(request, 'post_list.html', context)
 
 
 # Create your views here.
@@ -101,4 +101,4 @@ def beautypost_detail(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'beauty/beautypost_detail.html', context)
+    return render(request, 'post_detail.html', context)

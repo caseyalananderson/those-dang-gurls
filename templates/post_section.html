@@ -20,6 +20,7 @@
         {{ post.content|safe }}
     </div>
 </div>
+{% if post.youtube_embed_link %}
 
 <div class="row">
     <div class="sixteen wide column">
@@ -32,3 +33,5 @@
         </div>
     </div>
 </div>
+{% endif %}
+

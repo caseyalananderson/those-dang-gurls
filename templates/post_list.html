@@ -7,6 +7,7 @@
 <div class="pusher">
     {% include "header.html" %}
     <div class="ui vertical stripe segment">
+        <p> {{ post_detail }} </p>
         <div class="ui middle aligned stackable grid container">
             {% if posts %}
             <div class="row">
@@ -16,11 +17,32 @@
                         {% for post in row %}
                         <td align="center">
                             <h5 align="center">
-                                <a href="{% url 'travelpost_detail' pk=post.pk %}">
+                                {% if post.post_type == 'travel' %}
+                                <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'food' %}
+                                <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'beauty' %}
+                                <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'fitness' %}
+                                <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                {% else %}
+                                <a href="." >
+                                {% endif %}
                                     {{ post.title }}
                                 </a>
                             </h5>
-                            <a href="{% url 'travelpost_detail' pk=post.pk %}">
+
+                            {% if post.post_type == 'travel' %}
+                            <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                            {% elif post.post_type == 'food' %}
+                            <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                            {% elif post.post_type == 'beauty' %}
+                            <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                            {% elif post.post_type == 'fitness' %}
+                            <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                            {% else %}
+                            <a href="." >
+                            {% endif %}
                             {% if post.cover_photo.url %}
                             <img class="ui center floated image" src="{{ post.cover_photo.url }}"
                                  border=3 height=200 width=300>

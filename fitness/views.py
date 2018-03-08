@@ -34,10 +34,10 @@ def fitnesspost_list(request):
         pagnated_fitness_posts = paginator.page(1)
 
     context = {
-        'fitness_posts': pagnated_fitness_posts,
+        'posts': pagnated_fitness_posts,
     }
 
-    return render(request, 'fitness/fitnesspost_list.html', context)
+    return render(request, 'post_list.html', context)
 
 
 # Create your views here.
@@ -100,4 +100,4 @@ def fitnesspost_detail(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'fitness/fitnesspost_detail.html', context)
+    return render(request, 'post_detail.html', context)

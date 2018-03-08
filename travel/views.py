@@ -34,10 +34,10 @@ def travelpost_list(request):
         pagnated_travel_posts = paginator.page(1)
 
     context = {
-        'travel_posts': pagnated_travel_posts,
+        'posts': pagnated_travel_posts,
     }
 
-    return render(request, 'travel/travelpost_list.html', context)
+    return render(request, 'post_list.html', context)
 
 
 # Create your views here.
@@ -100,4 +100,4 @@ def travelpost_detail(request, pk):
         'comment_form': comment_form,
     }
 
-    return render(request, 'travel/travelpost_detail.html', context)
+    return render(request, 'post_detail.html', context)
