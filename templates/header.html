@@ -6,6 +6,10 @@
 <div class="ui inverted vertical center aligned segment">
     <div class="ui huge tiered menu">
         <div class="menu">
+            <div class="ui simple  item">
+                <i class="icon home"></i>
+                <a href="/"> Home </a>
+            </div>
             <div class="ui simple dropdown item">
                 <i class="icon food blue"></i>
                 <a href="{% url 'foodpost_list' %}"> Food </a>
@@ -59,6 +63,15 @@
                     <a class="item" href=https://www.youtube.com/channel/UChd9goWhGKhriO9CjRUSucw?view_as=subscriber><i class="youtube icon"></i>Youtube</a>
                 </div>
             </div>
+
+            <div class="ui simple item item">
+                <div class="ui icon input">
+                    <form action="/search/" style="margin: 10">
+                        <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+                        <button id="search_submit" type="submit" >Submit</button>
+                    </form>
+                </div>
+            </div>
             <div class="ui simple dropdown item">
                 {% if user.username %}
                 {{ user.username }}
@@ -74,14 +87,6 @@
                     <a class="item" href="/signup/"><i class="globe icon"></i>Signup</a>
                 </div>
                 {% endif %}
-            </div>
-        </div>
-        <div class="sub item">
-            <div class="ui icon input">
-                <form action="/search/" style="margin: 10">
-                    <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
-                    <button id="search_submit" type="submit" >Submit</button>
-                </form>
             </div>
         </div>
     </div>
