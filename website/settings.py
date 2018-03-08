@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # main apps
-    'index',
+    'homepage',
     'food',
     'beauty',
     'fitness',

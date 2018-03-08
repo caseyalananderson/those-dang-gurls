@@ -36,9 +36,7 @@ def search(request):
         pagnated_search_qs = paginator.page(1)
 
     context = {
-        'search_qs': pagnated_search_qs,
+        'posts': pagnated_search_qs,
     }
 
-    print(context)
-
-    return render(request, 'search/search_list.html', context)
+    return render(request, 'post_list.html', context)

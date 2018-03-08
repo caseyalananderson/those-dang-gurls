@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% block content %}
 
+{% include "header.html" %}
 <div class="pusher">
-    {% include "header.html" %}
    <div class="ui small vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
 
@@ -16,9 +16,10 @@
             <div class="row">
                 {% include "comment_section.html" %}
             </div>
-
         </div>
     </div>
 </div>
+{% include "footer.html" %}
+
 
 {% endblock %}

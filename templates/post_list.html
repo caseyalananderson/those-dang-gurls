@@ -4,8 +4,8 @@
 {% load partition %}
 
 <!-- Page Contents -->
+{% include "header.html" %}
 <div class="pusher">
-    {% include "header.html" %}
     <div class="ui vertical stripe segment">
         <p> {{ post_detail }} </p>
         <div class="ui middle aligned stackable grid container">
@@ -94,4 +94,6 @@
         </div>
     </div>
 </div>
+{% include "footer.html" %}
+
 {% endblock %}
