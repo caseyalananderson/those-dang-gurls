@@ -27,12 +27,11 @@
             </div>
             <div class="ui simple dropdown item">
                 <i class="icon lightning black"></i>
-                <a href="/fitness"> Fitness </a>
+                <a href="{% url 'fitnesspost_list' %}"> Fitness </a>
                 <i class="icon dropdown"></i>
                 <div class="menu">
                     <a class="item"><i class="edit icon"></i>Blog</a>
                     <a class="item"><i class="video icon"></i>Videos</a>
-                    <a class="item"><i class="settings icon"></i>Other Stuff</a>
                 </div>
             </div>
             <div class="ui simple dropdown item">
@@ -42,6 +41,12 @@
                 <div class="menu">
                     <a class="item"><i class="video icon"></i>Videos</a>
                 </div>
+            </div>
+
+            <div class="ui simple dropdown item">
+                <i class="icon lightning"></i>
+                <a href="{% url 'travelpost_list' %}"> Travel </a>
+                <i class="icon dropdown"></i>
             </div>
             <div class="ui simple dropdown item">
                 Social

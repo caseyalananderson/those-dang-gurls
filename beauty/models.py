@@ -61,7 +61,7 @@ def get_image_upload_path(instance, filename):
     return os.path.join("uploads", no_space_title, filename)
 
 
-class Beauty(models.Model):
+class BeautyPost(models.Model):
     """
     Class that holds all the entries
     """
@@ -121,18 +121,16 @@ class Image(models.Model):
     """
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to=get_image_upload_path)
-    beautypost = models.ForeignKey(Beauty, null=True, blank=True, on_delete=models.CASCADE)
+    beautypost = models.ForeignKey(BeautyPost, null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.title
 
 
-
-@receiver(post_save, sender=Beauty)
+@receiver(post_save, sender=BeautyPost)
 def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
     # without this check the save() below causes infinite post_save signals
     if instance.youtube_link and instance.youtube_embed_link is None:
-            print('creating link')
             instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
             instance.save()
 
@@ -169,4 +167,4 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(pre_save_post_receiver, sender=Beauty)
+pre_save.connect(pre_save_post_receiver, sender=BeautyPost)

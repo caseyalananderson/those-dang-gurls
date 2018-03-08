@@ -29,14 +29,18 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 
-    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
+
     url(r'^$', include('index.urls')),
     url(r'^food/', include('food.urls')),
     url(r'^beauty/', include('beauty.urls')),
+    url(r'^fitness/', include('fitness.urls')),
+    url(r'^travel/', include('travel.urls')),
 
-    url(r'^videos/', include('videos.urls')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^search/', include('search.urls')),
+
+    # url(r'^videos/', include('videos.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^users/', include('users.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

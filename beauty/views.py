@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Beauty
+from .models import BeautyPost
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
@@ -24,7 +24,7 @@ def beautypost_list(request):
     :return:
     """
 
-    beauty_posts = Beauty.objects.published()
+    beauty_posts = BeautyPost.objects.published()
     paginator = Paginator(beauty_posts, 6)  # Show 3 contacts per page
 
     page_number = request.GET.get('page')
@@ -50,7 +50,7 @@ def beautypost_detail(request, pk):
     :return:
     """
 
-    instance = get_object_or_404(Beauty, pk=pk)
+    instance = get_object_or_404(BeautyPost, pk=pk)
     thumbnail = instance.cover_photo
     comments = instance.comments
 

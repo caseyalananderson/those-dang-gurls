@@ -6,6 +6,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import reverse
 from utils.utils import unique_slug_generator
 from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from django.utils.text import slugify
 from django.contrib.auth.models import User
@@ -206,6 +208,9 @@ class FoodPost(models.Model):
     summary = RichTextUploadingField(blank=True, null=True)
     content = RichTextUploadingField(blank=True, null=True)
 
+    youtube_link = models.URLField(max_length=100, blank=True, null=True)
+    youtube_embed_link = models.URLField(max_length=100, blank=True, null=True)
+
     objects = FoodPostManager()
 
     @property
@@ -256,6 +261,23 @@ class Image(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+@receiver(post_save, sender=FoodPost)
+def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
+    # without this check the save() below causes infinite post_save signals
+    if instance.youtube_link and instance.youtube_embed_link is None:
+            instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
+            instance.save()
+
+
+def create_youtube_embed_link(youtube_link):
+    try:
+        embed_str = youtube_link.split('watch?v=')[1]
+        youtube_embed_link = 'http://www.youtube.com/embed/%s' % embed_str
+        return youtube_embed_link
+    except:
+        return ''
 
 
 def create_foodpost_slug(instance, new_slug=None):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import admin
-from .models import Beauty, Image
+from .models import BeautyPost, Image
 
 # Register your models here.
 
@@ -10,7 +10,7 @@ class ImageInline(admin.TabularInline):
     model = Image
 
 
-class BeautyAdmin(admin.ModelAdmin):
+class BeautyPostAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
@@ -21,4 +21,4 @@ class BeautyAdmin(admin.ModelAdmin):
         obj.save()
 
 
-admin.site.register(Beauty, BeautyAdmin)
+admin.site.register(BeautyPost, BeautyPostAdmin)
