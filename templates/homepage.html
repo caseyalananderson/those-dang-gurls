@@ -2,14 +2,12 @@
 {% load staticfiles %}
 {% block content %}
 
-
-{% include "header.html" %}
 <div class="pusher">
+    {% include "header.html" %}
     <div class="ui vertical stripe segment">
         <div class="ui middle aligned stackable grid container">
             <div class="row">
-                <div class="sixteen wide column center">
-
+                <div class="twelve wide column center">
                     <h2 align="center">
                         {% if last_post.post_type == 'travel' %}
                         <a href="{% url 'travelpost_detail' pk=last_post.pk %}" >
@@ -50,10 +48,8 @@
                         Author: {{ last_post.author.first_name }} {{ last_post.author.last_name }} <br>
                         Date Created: {{ last_post.publish_date }}
                     </h4>
+                        {{ last_post.summary|safe }}
                 </div>
-            </div>
-            <div class="row">
-                {{ last_post.summary|safe }}
             </div>
         </div>
     </div>

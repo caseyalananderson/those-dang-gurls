@@ -7,16 +7,31 @@
 {% include "header.html" %}
 <div class="pusher">
     <div class="ui vertical stripe segment">
-        <p> {{ post_detail }} </p>
         <div class="ui middle aligned stackable grid container">
             {% if posts %}
             <div class="row">
-                <table>
-                    {% for row in posts|columns:3 %}
-                    <tr>
-                        {% for post in row %}
-                        <td align="center">
-                            <h5 align="center">
+                <div class="sixteen wide column center">
+                    <table>
+                        {% for row in posts|columns:3 %}
+                        <tr>
+                            {% for post in row %}
+                            <td align="center">
+                                <h5 align="center">
+                                    {% if post.post_type == 'travel' %}
+                                    <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'food' %}
+                                    <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'beauty' %}
+                                    <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'fitness' %}
+                                    <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                    {% else %}
+                                    <a href="." >
+                                    {% endif %}
+                                        {{ post.title }}
+                                    </a>
+                                </h5>
+
                                 {% if post.post_type == 'travel' %}
                                 <a href="{% url 'travelpost_detail' pk=post.pk %}" >
                                 {% elif post.post_type == 'food' %}
@@ -28,43 +43,29 @@
                                 {% else %}
                                 <a href="." >
                                 {% endif %}
-                                    {{ post.title }}
+                                {% if post.cover_photo.url %}
+                                <img class="ui centered floated image" src="{{ post.cover_photo.url }}"
+                                     border=3 height=200 width=300>
+                                {% else %}
+                                <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
+                                     border=3 height=200 width=300>
+                                {% endif %}
                                 </a>
-                            </h5>
 
-                            {% if post.post_type == 'travel' %}
-                            <a href="{% url 'travelpost_detail' pk=post.pk %}" >
-                            {% elif post.post_type == 'food' %}
-                            <a href="{% url 'foodpost_detail' pk=post.pk %}" >
-                            {% elif post.post_type == 'beauty' %}
-                            <a href="{% url 'beautypost_detail' pk=post.pk %}" >
-                            {% elif post.post_type == 'fitness' %}
-                            <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
-                            {% else %}
-                            <a href="." >
-                            {% endif %}
-                            {% if post.cover_photo.url %}
-                            <img class="ui centered floated image" src="{{ post.cover_photo.url }}"
-                                 border=3 height=200 width=300>
-                            {% else %}
-                            <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
-                                 border=3 height=200 width=300>
-                            {% endif %}
-                            </a>
-
-                            <h6 align="center">
-                                Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
-                                Date Created: {{ post.publish_date }}
-                            </h6>
-                        </td>
+                                <h6 align="center">
+                                    Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                                    Date Created: {{ post.publish_date }}
+                                </h6>
+                            </td>
+                            {% endfor %}
+                        </tr>
                         {% endfor %}
-                    </tr>
-                    {% endfor %}
-                </table>
+                    </table>
+                </div>
+            </div>
 
             <!-- Pagination -->
 
-            </div>
             <div class="row">
                 <div class="sixteen wide column">
                     <h3 class="ui centered">

@@ -164,11 +164,30 @@
                 }
             })
         ;
+         $('.ui.right.sidebar').sidebar({
+        dimPage: false,
+        transition: 'overlay',
+        exclusive: false,
+        closable: false
+        });
+
+ $('.ui.right.sidebar')
+.sidebar('attach events', '#right-sidebar-toggle');
 
         // create sidebar and attach to menu open
-        $('.ui.sidebar')
-            .sidebar('attach events', '.toc.item')
-        ;
+        // $('.ui.sidebar')
+        //   .sidebar('attach events', '.toc.item')
+        //;
+
+        // $('.ui.sidebar')
+        // .sidebar('toggle')
+        // ;
+
+        // $(".ui.sidebar").sidebar({
+    	//    context: $('.otherstuff')
+        // });
+
+        // $('a').click(function() { $('.ui.sidebar').sidebar('toggle');
 
         // Toggle on the reply button
         $('.comment-reply-btn')
