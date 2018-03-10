@@ -37,9 +37,24 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipes',
-    'index',
-    'blog',
+
+    # main apps
+    'homepage',
+    'food',
+    'beauty',
+    'fitness',
+    'travel',
+    # 'videos',
+    'search',
+    'comments',
+    'users',
+
+    # supporting apps (editor, forms,
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'crispy_forms',
+    'columns',
+    # 'cadmin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,10 +95,21 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'thosedanggirls_db',
+        'USER': 'adanggirl',
+        'PASSWORD': 'password123454321',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
 
 
 # Internationalization
@@ -111,3 +137,25 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = '/'
+
+###################################
+# CKEDITOR CONFIGURATION ##
+###################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+###################################
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
+

@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+<div class="eight wide column">
+    <h1>
+        {% if post.post_type == 'travel' %}
+        <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'food' %}
+        <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'beauty' %}
+        <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+        {% elif post.post_type == 'fitness' %}
+        <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+        {% else %}
+        <a href="." >
+        {% endif %}
+            {{ post.title }}
+        </a>
+    </h1>
+    <h4>
+        Author: {{ post.author.first_name }} {{ post.author.last_name }} | Date Created: {{ post.publish_date }}
+    </h4>
+
+    {{ post.summary|safe }}
+</div>
+<div class="six wide right floated column">
+    <img src="{{ post.cover_photo.url }}"
+         class="ui center large bordered rounded image">
+</div>
+
+<div class="row">
+    <div class="sixteen wide column">
+        {{ post.content|safe }}
+    </div>
+</div>
+{% if post.youtube_embed_link %}
+
+<div class="row">
+    <div class="sixteen wide column">
+        <div class="six wide right floated column">
+            <iframe width="420" height="315"
+                    src="{{ post.youtube_embed_link }}"
+                    allowfullscreen="allowfullscreen"
+                    frameBorder="0">
+            </iframe>
+        </div>
+    </div>
+</div>
+{% endif %}
+

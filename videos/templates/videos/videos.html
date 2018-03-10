@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- Following Menu -->
+{% include "following_menu.html" %}
+<!-- Sidebar Menu -->
+{% include "sidebar_menu.html" %}
+
+
+<!-- Page Contents -->
+<div class="pusher">
+
+  <!-- Header -->
+  <div class="ui inverted vertical center aligned segment">
+     {% include "header.html" %}
+  </div>
+
+    {% for video in videos %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            <div class="row">
+                <div class="eight wide column">
+                <h1><a href="" class="ui header">{{ video.title }}</a></h1>
+                {% if video.related_blog %}
+                        <h2> Related to : {{ video.related_blog.title }}  </h2>
+                {% endif %}
+                {% if video.related_recipe %}
+                        <h2> Related to : {{ video.related_recipe.title }}  </h2>
+                {% endif %}
+                <p>{{ video.description|linebreaksbr }}</p>
+                </div>
+
+                <div class="six wide right floated column">
+                    <iframe width="420" height="315"
+                            src="{{ video.youtube_embed_link }}"
+                            allowfullscreen="allowfullscreen"
+                            frameBorder="0">
+                    </iframe>
+
+            <img src="{{ recipe.photo.url }}"  class="ui large bordered rounded image">
+            </div>
+      </div>
+    </div>
+        {% endfor %}
+
+    <!--
+
+
+      <div class="content container">
+
+          <div class="row">
+              <div class="col-md-8">
+              {% for recipe in recipes %}
+
+                 <div class="ui vertical center aligned segment">
+                      <div class="date">
+                          {{ post.published_date }}
+                      </div>
+
+                      <h1><a href="">{{ recipe.title }}</a></h1>
+                      <h2><a href="">{{ recipe.health }}</a></h2>
+                      {% if recipe.vegan %}
+                        <h1> Vegan </h1>
+                      {% endif %}
+                     <img >
+                      <p>{{ recipe.description|linebreaksbr }}</p>
+                  </div>
+              {% endfor %}
+              </div>
+          </div>
+      </div>
+
+      -->
+
+
+  {% include "footer.html" %}
+
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Page Contents -->
+{% include "header.html" %}
+<div class="pusher">
+   <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+
+            <!-- Main post section goes here -->
+            <div class="row">
+                {% include "post_section.html" %}
+            </div>
+
+            <!-- Recipe Section goes in here -->
+            {% if recipe %}
+            <div class="row">
+                {% include "recipe_section.html" %}
+            </div>
+            {% endif %}
+
+            <!-- Comment Section -->
+            <div class="row">
+                {% include "comment_section.html" %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+
+
+{% endblock %}

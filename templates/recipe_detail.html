@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% include "header.html" %}
+<div class="pusher">
+   <div class="ui small vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+
+            <!-- Recipe Section goes in here -->
+            <div class="row">
+                {% include "recipe_section.html" %}
+            </div>
+
+            <!-- Comment Section -->
+            <div class="row">
+                {% include "comment_section.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+
+
+{% endblock %}

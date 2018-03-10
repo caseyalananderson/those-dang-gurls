@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+{% load partition %}
+
+<!-- Page Contents -->
+{% include "header.html" %}
+<div class="pusher">
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid container">
+            {% if posts %}
+            <div class="row">
+                <div class="sixteen wide column center">
+                    <table>
+                        {% for row in posts|columns:3 %}
+                        <tr>
+                            {% for post in row %}
+                            <td align="center">
+                                <h5 align="center">
+                                    {% if post.post_type == 'travel' %}
+                                    <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'food' %}
+                                    <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'beauty' %}
+                                    <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'fitness' %}
+                                    <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                    {% else %}
+                                    <a href="." >
+                                    {% endif %}
+                                        {{ post.title }}
+                                    </a>
+                                </h5>
+
+                                {% if post.post_type == 'travel' %}
+                                <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'food' %}
+                                <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'beauty' %}
+                                <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'fitness' %}
+                                <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                {% else %}
+                                <a href="." >
+                                {% endif %}
+                                {% if post.cover_photo.url %}
+                                <img class="ui centered floated image" src="{{ post.cover_photo.url }}"
+                                     border=3 height=200 width=300>
+                                {% else %}
+                                <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
+                                     border=3 height=200 width=300>
+                                {% endif %}
+                                </a>
+
+                                <h6 align="center">
+                                    Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                                    Date Created: {{ post.publish_date }}
+                                </h6>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+
+            <div class="row">
+                <div class="sixteen wide column">
+                    <h3 class="ui centered">
+                        {% if posts.has_previous %}
+                        <a  href="?page=1">&laquo; First   |   </a>
+                        <a href="?page={{ posts.previous_page_number }}"> Previous  |   </a>
+                        {% endif %}
+
+                        {% if posts.has_next %}
+                        <a href="?page={{ posts.next_page_number }}">    Next | </a>
+                        <a href="?page={{ posts.paginator.num_pages }}">    Last &raquo;</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                        </span>
+                    </h3>
+                </div>
+            {% else %}
+            <div class="row">
+                <h2>Nothing matched your search</h2>
+                <p> We are a new and upcoming website and are trying to
+                    populate the database as fast as we can with entries.
+                    Please be patient and get back to us soon!
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+
+{% endblock %}

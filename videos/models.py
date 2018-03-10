@@ -1,7 +1,8 @@
 from django.db import models
 
-# Create your models here.
-# from recipes.models import Recipe
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Video(models.Model):
@@ -12,10 +13,29 @@ class Video(models.Model):
     title = models.CharField(max_length=30)
     published_date = models.DateField(auto_now_add=True)
     youtube_link = models.URLField(null=False)
-    text = models.TextField(null=True)
+    youtube_embed_link = models.URLField(max_length=100, blank=True)
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ('title',)
+
+
+@receiver(post_save, sender=Video)
+def handler_that_saves_a_mymodel_instance(sender, instance, created, **kwargs):
+    # without this check the save() below causes infinite post_save signals
+    if created:
+        instance.youtube_embed_link = create_youtube_embed_link(instance.youtube_link)
+        instance.save()
+
+
+def create_youtube_embed_link(youtube_link):
+    try:
+        embed_str = youtube_link.split('watch?v=')[1]
+        youtube_embed_link = 'http://www.youtube.com/embed/%s' % embed_str
+        return youtube_embed_link
+    except:
+        return ''
+
