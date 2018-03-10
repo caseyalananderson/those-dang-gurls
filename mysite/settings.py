@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2of_qncz8xr2ccyget7hff(nu!y&1swfpdq82fwa@#)rg6wevg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1' 'thosedanggurls.com']
 
 
 # Application definition
@@ -53,7 +53,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     # 'crispy_forms',
-    'columns',
+    # 'columns',
     # 'cadmin',
 )
 
@@ -68,7 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
@@ -100,7 +100,7 @@ DATABASES = {
         'USER': 'adanggirl',
         'PASSWORD': 'password123454321',
         'HOST': 'localhost',
-        'PORT': '',
+#        'PORT': '',
     }
 }
 
