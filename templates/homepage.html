@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+{% load partition %}
 
 <div class="pusher">
     {% include "header.html" %}
@@ -49,6 +50,60 @@
                         Date Created: {{ last_post.publish_date }}
                     </h4>
                         {{ last_post.summary|safe }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve wide column center">
+                    <table>
+                        {% for row in recent_posts|columns:2 %}
+                        <tr>
+                            {% for post in row %}
+                            <td align="center">
+                                <h5 align="center">
+                                    {% if post.post_type == 'travel' %}
+                                    <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'food' %}
+                                    <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'beauty' %}
+                                    <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                    {% elif post.post_type == 'fitness' %}
+                                    <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                    {% else %}
+                                    <a href="." >
+                                    {% endif %}
+                                        {{ post.title }}
+                                    </a>
+                                </h5>
+
+                                {% if post.post_type == 'travel' %}
+                                <a href="{% url 'travelpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'food' %}
+                                <a href="{% url 'foodpost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'beauty' %}
+                                <a href="{% url 'beautypost_detail' pk=post.pk %}" >
+                                {% elif post.post_type == 'fitness' %}
+                                <a href="{% url 'fitnesspost_detail' pk=post.pk %}" >
+                                {% else %}
+                                <a href="." >
+                                {% endif %}
+                                {% if post.cover_photo.url %}
+                                <img class="ui centered floated image" src="{{ post.cover_photo.url }}"
+                                     border=3 height=200 width=300>
+                                {% else %}
+                                <img class="ui center floated image" src="{% static 'img/default_img.jpg' %}"
+                                     border=3 height=200 width=300>
+                                {% endif %}
+                                </a>
+
+                                <h6 align="center">
+                                    Author: {{ post.author.first_name }} {{ post.author.last_name }} <br>
+                                    Date Created: {{ post.publish_date }}
+                                </h6>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
