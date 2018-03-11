@@ -46,8 +46,9 @@ def get_upload_path(instance, filename):
     :param filename:
     :return:
     """
-    no_space_title = str(instance.title.replace(' ', ''))
-    return os.path.join("uploads/travel", no_space_title, filename)
+    upload_directory = str(instance.title.replace(' ', ''))
+    upload_filename = filename
+    return os.path.join("uploads/travel", upload_directory, upload_filename)
 
 
 def get_image_upload_path(instance, filename):
@@ -57,8 +58,10 @@ def get_image_upload_path(instance, filename):
     :param filename:
     :return:
     """
-    no_space_title = str(instance.travelpost.title.replace(' ', ''))
-    return os.path.join("uploads", no_space_title, filename)
+    base, extension = os.path.splitext(filename)
+    upload_directory = str(instance.foodpost.title.replace(' ', ''))
+    upload_filename = str(instance.title) + str(extension)
+    return os.path.join("uploads/travel", upload_directory, upload_filename)
 
 
 class TravelPost(models.Model):
