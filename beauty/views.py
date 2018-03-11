@@ -13,9 +13,12 @@ from comments.models import Comment
 
 # For Pagination
 from django.core.paginator import Paginator
+# Login Required
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def beautypost_list(request):
     """
     Main index that displays blog post.
@@ -42,6 +45,7 @@ def beautypost_list(request):
 
 
 # Create your views here.
+@login_required
 def beautypost_detail(request, pk):
     """
     Main index that displays beauty blog post

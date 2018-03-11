@@ -5,9 +5,11 @@ from travel.models import TravelPost
 from beauty.models import BeautyPost
 from itertools import chain
 from operator import attrgetter
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def homepage(request):
 
     last_post, recent_posts = get_recent_posts()

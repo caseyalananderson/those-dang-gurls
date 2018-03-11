@@ -14,8 +14,11 @@ from comments.models import Comment
 # For Pagination
 from django.core.paginator import Paginator
 
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required
 def foodpost_list(request):
     """
     Main index that displays blog post.
@@ -67,6 +70,7 @@ def foodpost_list(request):
 
 
 # Create your views here.
+@login_required
 def foodpost_detail(request, pk):
     """
     Main index that displays blog post
@@ -131,6 +135,7 @@ def foodpost_detail(request, pk):
 
 
 # Create your views here.
+@login_required
 def recipe_detail(request, pk):
     """
     Main index that displays blog post
