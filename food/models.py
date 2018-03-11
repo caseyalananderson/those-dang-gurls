@@ -101,6 +101,17 @@ class RecipeManager(models.Manager):
         return qs
 
 
+def get_recipe_upload_path(instance, filename):
+    """
+    Gets path of file to upload
+    :param instance:
+    :param filename:
+    :return:
+    """
+    upload_directory = str(instance.title.replace(' ', ''))
+    upload_filename = filename
+    return os.path.join("uploads/recipe", upload_directory, upload_filename)
+
 def get_upload_path(instance, filename):
     """
     Gets path of file to upload
@@ -108,8 +119,9 @@ def get_upload_path(instance, filename):
     :param filename:
     :return:
     """
-    no_space_title = str(instance.title.replace(' ', ''))
-    return os.path.join("uploads", no_space_title, filename)
+    upload_directory = str(instance.title.replace(' ', ''))
+    upload_filename = filename
+    return os.path.join("uploads/food", upload_directory, upload_filename)
 
 
 def get_image_upload_path(instance, filename):
@@ -119,8 +131,10 @@ def get_image_upload_path(instance, filename):
     :param filename:
     :return:
     """
-    no_space_title = str(instance.foodpost.title.replace(' ', ''))
-    return os.path.join("uploads", no_space_title, filename)
+    base, extension = os.path.splitext(filename)
+    upload_directory = str(instance.foodpost.title.replace(' ', ''))
+    upload_filename = str(instance.title) + str(extension)
+    return os.path.join("uploads/food", upload_directory, upload_filename)
 
 
 class Recipe(models.Model):
@@ -133,7 +147,7 @@ class Recipe(models.Model):
 
     # Some main Fields
     title = models.CharField(max_length=50, default=None)
-    cover_photo = models.ImageField(upload_to=get_upload_path, null=True)
+    cover_photo = models.ImageField(upload_to=get_recipe_upload_path, null=True)
 
     # Dates
     publish_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
