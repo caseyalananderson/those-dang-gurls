@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2of_qncz8xr2ccyget7hff(nu!y&1swfpdq82fwa@#)rg6wevg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1' 'thosedanggurls.com']
+# ALLOWED_HOSTS = ['127.0.0.1:8000' 'thosedanggurls.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,7 +45,6 @@ INSTALLED_APPS = (
     'beauty',
     'fitness',
     'travel',
-    # 'videos',
     'search',
     'comments',
     'users',
@@ -52,9 +52,6 @@ INSTALLED_APPS = (
     # supporting apps (editor, forms,
     'ckeditor',
     'ckeditor_uploader',
-    # 'crispy_forms',
-    # 'columns',
-    # 'cadmin',
 )
 
 MIDDLEWARE_CLASSES = (
