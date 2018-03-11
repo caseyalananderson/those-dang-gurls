@@ -36,7 +36,18 @@ def get_recent_posts():
     sorted_posts = sorted((chain(food_posts, fitness_posts, travel_posts, beauty_posts)),
                           key=attrgetter('timestamp'), reverse=True)
 
-    return sorted_posts[0], sorted_posts[1:5]
+    if sorted_posts:
+        last_post = sorted_posts[0]
+        if len(sorted_posts) >= 5:
+            recent_posts = sorted_posts[1:5]
+        else:
+            recent_posts = sorted_posts[1:]
+    else:
+        last_post = []
+        recent_posts = []
+            
+
+    return last_post, recent_posts
 
 
 
