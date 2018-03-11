@@ -25,8 +25,8 @@ SECRET_KEY = '2of_qncz8xr2ccyget7hff(nu!y&1swfpdq82fwa@#)rg6wevg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1:8000' 'thosedanggurls.com']
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['127.0.0.1', '159.89.155.26', 'thosedanggirls.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -95,7 +95,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'thosedanggirls_db',
         'USER': 'adanggirl',
-        'PASSWORD': 'password123454321',
+        #'PASSWORD': 'password123454321',
+        'PASSWORD': 'thosedanggirls123454321',
         'HOST': 'localhost',
 #        'PORT': '',
     }
@@ -127,10 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/var/www/thosedanggirls/static/"
 
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -151,8 +153,4 @@ CKEDITOR_CONFIGS = {
         'toolbar': None,
     },
 }
-
-###################################
-
-CRISPY_TEMPLATE_PACK = 'uni_form'
 
