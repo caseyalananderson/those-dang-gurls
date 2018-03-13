@@ -23,12 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2of_qncz8xr2ccyget7hff(nu!y&1swfpdq82fwa@#)rg6wevg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['127.0.0.1', '159.89.155.26', 'thosedanggirls.com']
-ALLOWED_HOSTS = ['127.0.0.1', '159.89.155.26', 'thosedanggirls.com', '0.0.0.1']
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '159.89.155.26', 'thosedanggirls.com', '0.0.0.1', 'www.thosedanggirls.com']
 
 
 # Application definition
