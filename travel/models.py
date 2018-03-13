@@ -59,7 +59,7 @@ def get_image_upload_path(instance, filename):
     :return:
     """
     base, extension = os.path.splitext(filename)
-    upload_directory = str(instance.foodpost.title.replace(' ', ''))
+    upload_directory = str(instance.travelpost.title.replace(' ', ''))
     upload_filename = str(instance.title) + str(extension)
     return os.path.join("uploads/travel", upload_directory, upload_filename)
 
