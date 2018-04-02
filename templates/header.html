@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <!-- Main Header -->
 <a href="/">
-<img src="{% static 'icons/thosedanggirls.png' %}" height="300" width="100%">
+<img src="{% static 'icons/thosedanggirls2.png' %}" height="300" width="100%">
 </a>
 <div class="ui inverted vertical center aligned segment">
     <div class="ui huge tiered menu">
@@ -16,17 +16,17 @@
                 <i class="icon dropdown"></i>
                 <div class="dropdown vertical menu">
                     <a class="item" href="{% url 'foodpost_list' %}?filter=breakfast">Breakfast </a>
-                    <a class="item" href="{% url 'foodpost_list' %}?filter=entree"><i class="edit icon"></i>Entree</a>
-                    <a class="item" href="{% url 'foodpost_list' %}?filter=snack"><i class="edit icon"></i>Snack</a>
-                    <a class="item" href="{% url 'foodpost_list' %}?filter=dessert"><i class="edit icon"></i>Desert</a>
-                    <a class="item" href="{% url 'foodpost_list' %}?filter=foodprep"><i class="edit icon"></i>Food-Prep</a>
-                    <a class="item" href="{% url 'foodpost_list' %}?filter=beverages"><i class="edit icon"></i>Beverages</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=entree">Entree</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=snack">Snack</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=dessert">Desert</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=foodprep">Food-Prep</a>
+                    <a class="item" href="{% url 'foodpost_list' %}?filter=beverages">Beverages</a>
                     <div class="ui simple dropdown item">
                         More
                         <i class="icon dropdown"></i>
                         <div class="dropdown vertical menu">
-                            <a class="item" href="{% url 'foodpost_list' %}?filter=vegan"><i class="edit icon"></i>Vegan</a>
-                            <a class="item" href="{% url 'foodpost_list' %}?filter=glutenfree"><i class="edit icon"></i>Gluten-Free</a>
+                            <a class="item" href="{% url 'foodpost_list' %}?filter=vegan">Vegan</a>
+                            <a class="item" href="{% url 'foodpost_list' %}?filter=glutenfree">Gluten-Free</a>
                         </div>
                     </div>
                 </div>
@@ -36,23 +36,28 @@
                 <a href="{% url 'fitnesspost_list' %}"> Fitness </a>
                 <i class="icon dropdown"></i>
                 <div class="menu">
-                    <a class="item"><i class="edit icon"></i>Blog</a>
-                    <a class="item"><i class="video icon"></i>Videos</a>
+                    <a class="item">Blog</a>
+                    <a class="item">Videos</a>
                 </div>
             </div>
             <div class="ui simple dropdown item">
-                <i class="icon female pink"></i>
+                <!--<i class="icon female pink"></i> -->
                 <a href="{% url 'beautypost_list' %}"> Beauty </a>
                 <i class="icon dropdown"></i>
                 <div class="menu">
-                    <a class="item"><i class="video icon"></i>Videos</a>
+                    <a class="item">Blog</a>
+                    <a class="item">Videos</a>
                 </div>
             </div>
 
             <div class="ui simple dropdown item">
                 <i class="icon lightning"></i>
-                <a href="{% url 'travelpost_list' %}"> Travel </a>
+                <a href="{% url 'travelpost_list' %}"> Adventure </a>
                 <i class="icon dropdown"></i>
+                <div class="menu">
+                    <a class="item">Blog</a>
+                    <a class="item">Videos</a>
+                </div>
             </div>
             <div class="ui simple dropdown item">
                 Social
